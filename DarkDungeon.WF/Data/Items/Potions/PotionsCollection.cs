@@ -4,19 +4,20 @@ using System.Collections.Generic;
 
 namespace Data.Items.Potions
 {
-    public class PotionsCollection
+    public class PotionsCollection : Item
     {
         public ItemsCollection HealthPotions { get; private set; }
 
         public ItemsCollection ManaPotions { get; private set; }
 
         public PotionsCollection()
+            : base(0)
         {
             this.HealthPotions = new ItemsCollection(16, 50.0M);
             this.ManaPotions = new ItemsCollection(16, 50.0M);
         }
 
-        public decimal GetWeight()
+        public new decimal GetWeight()
         {
             decimal weight = 0.0M;
 

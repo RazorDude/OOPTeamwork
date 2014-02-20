@@ -41,9 +41,11 @@
   <ItemGroup>
     <Compile Include="Characters\Character.cs" />
     <Compile Include="Characters\Enemies\Enemy.cs" />
+    <Compile Include="Characters\IFightable.cs" />
+    <Compile Include="Characters\IImprovable.cs" />
     <Compile Include="Characters\PlayerCharacters\PlayerCharacter.cs" />
     <Compile Include="GridViewItem\GridViewItem.cs" />
-    <Compile Include="Items\ItemsCollections\Inventars\CharacterInventar.cs" />
+    <Compile Include="Items\ItemsCollections\Inventars\Equipment.cs" />
     <Compile Include="Items\DefenceItems\DefenceItem.cs" />
     <Compile Include="Items\DefenceItems\IDefensible.cs" />
     <Compile Include="Items\ItemsCollections\Inventars\Inventar.cs" />

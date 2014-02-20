@@ -4,7 +4,7 @@ using System;
 
 namespace Data.Items.ItemsCollections.Inventars
 {
-    public class CharacterInventar : Inventar
+    public class Equipment : Inventar, IDamageDealable, IDefensible
     {
         public Weapon Weapon { get; private set; }
 
@@ -16,13 +16,13 @@ namespace Data.Items.ItemsCollections.Inventars
 
         public DefenceItem Gloves { get; private set; }
 
-        public CharacterInventar()
+        public Equipment()
             : this(16, 50.0M)
         {
             
         }
 
-        public CharacterInventar(int itemsCountCapacity, decimal itemsWeightCapacity)
+        public Equipment(int itemsCountCapacity, decimal itemsWeightCapacity)
             : base(itemsCountCapacity, itemsWeightCapacity)
         {
             this.Weapon = null;
@@ -77,7 +77,7 @@ namespace Data.Items.ItemsCollections.Inventars
             return oldGloves;
         }
 
-        public decimal GetWeight()
+        public new decimal GetWeight()
         {
             decimal weight = 0.0M;
 
@@ -109,6 +109,47 @@ namespace Data.Items.ItemsCollections.Inventars
             }
 
             return weight;
+        }
+
+        public int DealDamage()
+        {
+            int damage = 0;
+
+            if (this.Weapon != null)
+            {
+                damage += this.Weapon.DealDamage();
+            }
+
+            return damage;
+        }
+
+        public int AbsorbDamage(int damage)
+        {
+            int absorbedDamage = 0;
+
+            if (this.Armor != null)
+            {
+                absorbedDamage += this.Armor.AbsorbDamage(damage);
+            }
+
+            if (this.Helmet != null)
+            {
+                absorbedDamage += this.Helmet.AbsorbDamage(damage);
+            }
+
+            if (this.Boots != null)
+            {
+                absorbedDamage += this.Boots.AbsorbDamage(damage);
+            }
+
+            if (this.Gloves != null)
+            {
+                absorbedDamage += this.Gloves.AbsorbDamage(damage);
+            }
+
+            int remainedDamage = Math.Max(damage - absorbedDamage, 0);
+
+            return remainedDamage;
         }
     }
 }

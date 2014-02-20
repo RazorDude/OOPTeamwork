@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Characters;
+using System;
 
 namespace Data.Items.Weapons
 {
@@ -13,6 +14,13 @@ namespace Data.Items.Weapons
         {
             this.Damage = damage;
             this.Range = range;
+        }
+
+        public int DealDamage()
+        {
+            int damage = this.Damage;
+
+            return damage;
         }
     }
 }

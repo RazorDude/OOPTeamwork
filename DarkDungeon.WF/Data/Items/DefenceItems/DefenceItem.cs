@@ -11,5 +11,14 @@ namespace Data.Items.DefenceItems
         {
             this.Defence = defence;
         }
+
+        public int AbsorbDamage(int damage)
+        {
+            int absorbedDamage = Math.Min(this.Defence, damage);
+
+            int remainedDamage = damage - absorbedDamage;
+
+            return remainedDamage;
+        }
     }
 }
