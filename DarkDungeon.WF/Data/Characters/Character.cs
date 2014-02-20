@@ -1,10 +1,13 @@
-﻿using System;
+﻿using Data.Items.Inventars;
+using System;
 
 namespace Data
 {
     public abstract class Character
     {
         public Position Position { get; set; }
+
+        public CharacterInventar Inventar { get; protected set; }
 
         public int Level { get; protected set; }
 
@@ -34,6 +37,7 @@ namespace Data
         public Character(int level, int healt, int mana, int strength, int defence, int neededExperienceIncrementPerLevel)
         {
             this.Position = new Position(0, 0);
+            this.Inventar = new CharacterInventar(16, 50M);
 
             this.Level = level;
             this.Experience = 0;
