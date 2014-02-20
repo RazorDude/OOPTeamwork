@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Data
 {
     public abstract class Character
     {
+        public Position Position { get; set; }
+
         public int Level { get; protected set; }
 
         public int Experience { get; protected set; }
@@ -35,6 +33,8 @@ namespace Data
 
         public Character(int level, int healt, int mana, int strength, int defence, int neededExperienceIncrementPerLevel)
         {
+            this.Position = new Position(0, 0);
+
             this.Level = level;
             this.Experience = 0;
             this.Healt = healt;
