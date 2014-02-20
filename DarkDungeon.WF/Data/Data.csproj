@@ -42,6 +42,7 @@
     <Compile Include="Characters\Character.cs" />
     <Compile Include="Characters\Enemies\Enemy.cs" />
     <Compile Include="Characters\PlayerCharacters\PlayerCharacter.cs" />
+    <Compile Include="GridViewItem\GridViewItem.cs" />
     <Compile Include="Items\Inventars\CharacterInventar.cs" />
     <Compile Include="Items\DefenceItems\DefenceItem.cs" />
     <Compile Include="Items\DefenceItems\IDefensible.cs" />
@@ -57,7 +58,7 @@
     <Compile Include="Items\Weapons\IDamageDealable.cs" />
     <Compile Include="Items\Weapons\Weapon.cs" />
     <Compile Include="Player\Player.cs" />
-    <Compile Include="Position.cs" />
+    <Compile Include="GridViewItem\Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

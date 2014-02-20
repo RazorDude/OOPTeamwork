@@ -1,12 +1,11 @@
 ﻿using Data.Items.Inventars;
+using Data.GridItem;
 using System;
 
-namespace Data
+namespace Data.Characters
 {
-    public abstract class Character
+    public abstract class Character : GridViewItem
     {
-        public Position Position { get; set; }
-
         public CharacterInventar Inventar { get; protected set; }
 
         public int Level { get; protected set; }
@@ -35,6 +34,7 @@ namespace Data
         }
 
         public Character(int level, int healt, int mana, int strength, int defence, int neededExperienceIncrementPerLevel)
+            : base()
         {
             this.Position = new Position(0, 0);
             this.Inventar = new CharacterInventar(16, 50M);
