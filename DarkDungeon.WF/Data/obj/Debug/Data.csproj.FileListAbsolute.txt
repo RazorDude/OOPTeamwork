@@ -1,0 +1,4 @@
+C:\Users\Macros\Desktop\OOPTeamwork\DarkDungeon.WF\Data\bin\Debug\Data.dll
+C:\Users\Macros\Desktop\OOPTeamwork\DarkDungeon.WF\Data\bin\Debug\Data.pdb
+C:\Users\Macros\Desktop\OOPTeamwork\DarkDungeon.WF\Data\obj\Debug\Data.dll
+C:\Users\Macros\Desktop\OOPTeamwork\DarkDungeon.WF\Data\obj\Debug\Data.pdb
