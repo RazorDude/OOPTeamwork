@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Game
 {
-    public abstract class Person
+    public abstract class Hero: ICreature, IMovable
     {
         private string name;
         private byte age;

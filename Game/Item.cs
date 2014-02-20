@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Game
 {
-   public abstract class Item
+   public abstract class Item: IItem
     {
        private byte durability;
        private int attack;
