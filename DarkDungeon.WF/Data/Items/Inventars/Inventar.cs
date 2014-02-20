@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Items.Money;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,8 @@ namespace Data.Items.Inventars
 {
     public abstract class Inventar
     {
+        public MoneyBag Money { get; protected set; }
+
         public List<Item> Items { get; protected set; }
 
         public int ItemsCountCapacity { get; protected set; }
@@ -18,6 +21,7 @@ namespace Data.Items.Inventars
         
         public Inventar(int itemsCountCapacity, decimal itemsWeightCapacity)
         {
+            this.Money = new MoneyBag();
             this.Items = new List<Item>();
             this.ItemsCountCapacity = itemsCountCapacity;
             this.ItemsWeightCapacity = itemsWeightCapacity;

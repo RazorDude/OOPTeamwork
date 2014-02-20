@@ -48,6 +48,8 @@
     <Compile Include="Items\Inventars\Inventar.cs" />
     <Compile Include="Items\Item.cs" />
     <Compile Include="Items\IWearable.cs" />
+    <Compile Include="Items\Money\ITransactable.cs" />
+    <Compile Include="Items\Money\Money.cs" />
     <Compile Include="Items\Potions\HealthPotion.cs" />
     <Compile Include="Items\Potions\IConsumable.cs" />
     <Compile Include="Items\Potions\ManaPotion.cs" />
