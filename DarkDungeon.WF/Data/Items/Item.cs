@@ -3,14 +3,19 @@ using System;
 
 namespace Data.Items
 {
-    public abstract class Item : GridViewItem, IWearable
+    public abstract class Item : GridViewItem, IWearable, IWeightable
     {
-        public decimal Weight { get; set; }
+        protected decimal Weight { get; set; }
 
         public Item(decimal weight)
             : base()
         {
             this.Weight = weight;
+        }
+
+        public decimal GetWeight()
+        {
+            return this.Weight;
         }
     }
 }

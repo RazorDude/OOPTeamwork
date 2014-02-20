@@ -43,23 +43,29 @@
     <Compile Include="Characters\Enemies\Enemy.cs" />
     <Compile Include="Characters\PlayerCharacters\PlayerCharacter.cs" />
     <Compile Include="GridViewItem\GridViewItem.cs" />
-    <Compile Include="Items\Inventars\CharacterInventar.cs" />
+    <Compile Include="Items\ItemsCollections\Inventars\CharacterInventar.cs" />
     <Compile Include="Items\DefenceItems\DefenceItem.cs" />
     <Compile Include="Items\DefenceItems\IDefensible.cs" />
-    <Compile Include="Items\Inventars\Inventar.cs" />
+    <Compile Include="Items\ItemsCollections\Inventars\Inventar.cs" />
     <Compile Include="Items\Item.cs" />
+    <Compile Include="Items\ItemsCollections\ItemsCollection.cs" />
     <Compile Include="Items\IWearable.cs" />
+    <Compile Include="Items\IWeightable.cs" />
     <Compile Include="Items\Money\ITransactable.cs" />
     <Compile Include="Items\Money\Money.cs" />
     <Compile Include="Items\Potions\HealthPotion.cs" />
     <Compile Include="Items\Potions\IConsumable.cs" />
     <Compile Include="Items\Potions\ManaPotion.cs" />
     <Compile Include="Items\Potions\Potion.cs" />
+    <Compile Include="Items\Potions\PotionsCollection.cs" />
     <Compile Include="Items\Weapons\IDamageDealable.cs" />
     <Compile Include="Items\Weapons\Weapon.cs" />
     <Compile Include="Player\Player.cs" />
     <Compile Include="GridViewItem\Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
