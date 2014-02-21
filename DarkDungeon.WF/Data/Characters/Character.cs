@@ -19,6 +19,8 @@ namespace Data.Characters
         public int Strength { get; protected set; }
 
         public int Defence { get; protected set; }
+        
+        public int Direction { get; set; }
 
         protected int NeededExperienceForLevelUp { get; set; }
 
@@ -29,11 +31,11 @@ namespace Data.Characters
         }
 
         public Character(int Health, int mana, int strength, int defence, int neededExperienceIncrementPerLevel)
-            : this(1, Health, mana, strength, defence, neededExperienceIncrementPerLevel)
+            : this(1, Health, mana, strength, defence, neededExperienceIncrementPerLevel, 1)
         {
         }
 
-        public Character(int level, int Health, int mana, int strength, int defence, int neededExperienceIncrementPerLevel)
+        public Character(int level, int Health, int mana, int strength, int defence, int neededExperienceIncrementPerLevel, int direction)
             : base()
         {
             this.Position = new Position(0, 0);
@@ -45,6 +47,7 @@ namespace Data.Characters
             this.Mana = mana;
             this.Strength = strength;
             this.Defence = defence;
+            this.Direction = direction;
 
             this.neededExperienceIncrementPerLevel = neededExperienceIncrementPerLevel;
             this.NeededExperienceForLevelUp = this.Level * this.NeededExperienceIncrementPerLevel;

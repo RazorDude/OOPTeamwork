@@ -16,3 +16,13 @@ C:\Users\Macros\Desktop\OOPTeamwork\DarkDungeon.WF\GUI\obj\Debug\GUI.exe
 C:\Users\Macros\Desktop\OOPTeamwork\DarkDungeon.WF\GUI\obj\Debug\GUI.pdb
 C:\Users\Macros\Desktop\OOPTeamwork\DarkDungeon.WF\GUI\bin\Debug\Data.dll
 C:\Users\Macros\Desktop\OOPTeamwork\DarkDungeon.WF\GUI\bin\Debug\Data.pdb
+C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\GUI\bin\Debug\GUI.exe.config
+C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\GUI\obj\Debug\GUI.exe
+C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\GUI\obj\Debug\GUI.pdb
+C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\GUI\bin\Debug\GUI.exe
+C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\GUI\bin\Debug\GUI.pdb
+C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\GUI\bin\Debug\Data.dll
+C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\GUI\bin\Debug\Data.pdb
+C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\GUI\obj\Debug\GUI.csprojResolveAssemblyReference.cache
+C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\GUI\obj\Debug\GUI.Properties.Resources.resources
+C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\GUI\obj\Debug\GUI.csproj.GenerateResource.Cache
