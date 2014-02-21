@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Game
 {
-   public abstract class Daemon
+   public abstract class Daemon: ICreature, IMovable
     {
     }
 }
