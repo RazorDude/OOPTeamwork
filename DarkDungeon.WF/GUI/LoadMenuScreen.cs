@@ -10,7 +10,7 @@ namespace GUI
         public static LoadMenuEnteredDelegate MenuEntered;
         void ReadSlot(int slot)
         {
-            string path = "Data\\Savedata\\Saves\\slot" + slot + ".dat";
+            string path = "Data\\Savedata\\Saves\\slot" + (slot + 1) + ".dat";
             List<int> file = new List<int>();
             int line;
             StreamReader s;
@@ -37,7 +37,7 @@ namespace GUI
                     return;
                 }
             }
-            if (file.Count != (Window.LevelDimensions("width") * Window.LevelDimensions("height")))
+            if (file.Count < (31 * 19))
             {
                 this.MarkSlotButtonEmpty(slot, "Corrupt data");
                 return;
@@ -84,9 +84,7 @@ namespace GUI
                 (Screen.PrimaryScreen.Bounds.Width / 2 - 65), 590, c);
             MenuEntered += this.OnMenuEntered;
             this.slots = new int[3][];
-            int dimension = Window.LevelDimensions("width") * Window.LevelDimensions("height");
-            for (int i = 0; i < 3; i++) slots[i] = new int[(Window.LevelDimensions("width") * Window.LevelDimensions("height"))];
-            slots[0] = new int[(Window.LevelDimensions("width") * Window.LevelDimensions("height"))];
+            for (int i = 0; i < 3; i++) slots[i] = new int[31 * 19];
         }
         public int[] GetSlot(int slot)
         {

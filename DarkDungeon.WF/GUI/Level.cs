@@ -36,7 +36,47 @@ namespace GUI
                 {
                     case 3: this.value = "Stone";
                         break;
-                    case 4: this.value = "Brick";
+                    case 4: this.value = "StoneWall";
+                        break;
+                    case 5: this.value = "Brick";
+                        break;
+                    case 6: this.value = "BrickWall";
+                        break;
+                    case 7: this.value = "Door";
+                        break;
+                    case 8: this.value = "Key";
+                        break;
+                    case 9: this.value = "Empty";
+                        break;
+                    case 10: this.value = "Character-Left";
+                        break;
+                    case 11: this.value = "Character-Right";
+                        break;
+                    case 12: this.value = "Character-Up";
+                        break;
+                    case 13: this.value = "Character-Down";
+                        break;
+                    case 14: this.value = "Demon";
+                        break;
+                    case 15: this.value = "Sword";
+                        break;
+                    case 16: this.value = "Bow";
+                        break;
+                    case 17: this.value = "Armor";
+                        break;
+                    case 18: this.value = "Quiver";
+                        break;
+                    case 19: this.value = "Potion";
+                        break;
+                    case 20: this.value = "Fireball";
+                        break;
+                    case 21: this.value = "Arrow-Left";
+                        break;
+                    case 22: this.value = "Arrow-Right";
+                        break;
+                    case 23: this.value = "Arrow-Up";
+                        break;
+                    case 24: this.value = "Arrow-Down";
                         break;
                 }
                 this.visualData = new PictureBox();
@@ -102,6 +142,13 @@ namespace GUI
         {
             get { return this.levelHeight; }
         }
+        void LoadFrames(ImageList imageList)
+        {
+            this.topFrame.Image = imageList.Images[this.horizontalFrameImageIndex];
+            this.bottomFrame.Image = imageList.Images[this.horizontalFrameImageIndex];
+            this.leftFrame.Image = imageList.Images[this.verticalFrameImageIndex];
+            this.rightFrame.Image = imageList.Images[this.verticalFrameImageIndex];
+        }
         public Level()
         {
             this.topFrame = new PictureBox();
@@ -109,21 +156,25 @@ namespace GUI
             this.topFrame.SizeMode = PictureBoxSizeMode.StretchImage;
             this.topFrame.Anchor = AnchorStyles.Top;
             this.topFrame.Dock = DockStyle.Top;
+            this.topFrame.SizeMode = PictureBoxSizeMode.StretchImage;
             this.leftFrame = new PictureBox();
             this.leftFrame.Width = this.frameDimension;
             this.leftFrame.SizeMode = PictureBoxSizeMode.StretchImage;
             this.leftFrame.Anchor = AnchorStyles.Left;
             this.leftFrame.Dock = DockStyle.Left;
+            this.leftFrame.SizeMode = PictureBoxSizeMode.StretchImage;
             this.bottomFrame = new PictureBox();
             this.bottomFrame.Height = this.frameDimension;
             this.bottomFrame.SizeMode = PictureBoxSizeMode.StretchImage;
             this.bottomFrame.Anchor = AnchorStyles.Bottom;
             this.bottomFrame.Dock = DockStyle.Bottom;
+            this.bottomFrame.SizeMode = PictureBoxSizeMode.StretchImage;
             this.rightFrame = new PictureBox();
             this.rightFrame.Width = this.frameDimension;
             this.rightFrame.SizeMode = PictureBoxSizeMode.StretchImage;
             this.rightFrame.Anchor = AnchorStyles.Right;
             this.rightFrame.Dock = DockStyle.Right;
+            this.rightFrame.SizeMode = PictureBoxSizeMode.StretchImage;
             this.levelMap = new Square[this.levelHeight, this.levelWidth];
             this.healthBar = new HealthBar(this.frameDimension, 200, AnchorStyles.Bottom, 0, 0);
         }
@@ -142,10 +193,7 @@ namespace GUI
                 }
                 y += this.squareWidth;
             }
-            this.topFrame.Image = imageList.Images[this.horizontalFrameImageIndex];
-            this.bottomFrame.Image = imageList.Images[this.horizontalFrameImageIndex];
-            this.leftFrame.Image = imageList.Images[this.verticalFrameImageIndex];
-            this.rightFrame.Image = imageList.Images[this.verticalFrameImageIndex];
+            this.LoadFrames(imageList);
         }
         public void LoadLevel(int[] savedSlot, ImageList imageList)
         {
@@ -161,10 +209,7 @@ namespace GUI
                 }
                 y += this.squareWidth;
             }
-            this.topFrame.Image = imageList.Images[this.horizontalFrameImageIndex];
-            this.bottomFrame.Image = imageList.Images[this.horizontalFrameImageIndex];
-            this.leftFrame.Image = imageList.Images[this.verticalFrameImageIndex];
-            this.rightFrame.Image = imageList.Images[this.verticalFrameImageIndex];
+            this.LoadFrames(imageList);
         }
         public int GetSquareImageIndex(int x, int y)
         {

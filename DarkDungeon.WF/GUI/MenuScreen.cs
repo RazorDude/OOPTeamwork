@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace GUI
@@ -8,21 +9,15 @@ namespace GUI
         protected Button[] buttons;
         protected void InitializeButton(int index, string name, string text, int width, int height, int startX, int startY, OnClick click)
         {
-            try
-            {
-                buttons[index] = new Button();
-                buttons[index].Name = name;
-                buttons[index].Text = text;
-                buttons[index].Size = new System.Drawing.Size(width, height);
-                buttons[index].Location = new System.Drawing.Point(startX, startY);
-                buttons[index].Anchor = AnchorStyles.Left;
-                buttons[index].Visible = true;
-                buttons[index].Click += new EventHandler(click);
-            }
-            catch (IndexOutOfRangeException)
-            {
-                throw new IndexOutOfRangeException("Index is out of range!");
-            }
+            buttons[index] = new Button();
+            buttons[index].Name = name;
+            buttons[index].Text = text;
+            buttons[index].BackColor = Color.DarkGray;
+            buttons[index].Size = new System.Drawing.Size(width, height);
+            buttons[index].Location = new System.Drawing.Point(startX, startY);
+            buttons[index].Anchor = AnchorStyles.Left;
+            buttons[index].Visible = true;
+            buttons[index].Click += new EventHandler(click);
         }
         public override Control[] GetControlData()
         {
