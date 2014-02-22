@@ -8,3 +8,8 @@ C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\Data\bin\Debug\Data.p
 C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
 C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\Data\obj\Debug\Data.dll
 C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\Data\obj\Debug\Data.pdb
+C:\Users\Tanya\Source\Repos\OOPTeamwork4\DarkDungeon.WF\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
+C:\Users\Tanya\Source\Repos\OOPTeamwork4\DarkDungeon.WF\Data\obj\Debug\Data.dll
+C:\Users\Tanya\Source\Repos\OOPTeamwork4\DarkDungeon.WF\Data\obj\Debug\Data.pdb
+C:\Users\Tanya\Source\Repos\OOPTeamwork4\DarkDungeon.WF\Data\bin\Debug\Data.dll
+C:\Users\Tanya\Source\Repos\OOPTeamwork4\DarkDungeon.WF\Data\bin\Debug\Data.pdb

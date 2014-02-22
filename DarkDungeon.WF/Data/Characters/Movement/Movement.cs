@@ -16,6 +16,31 @@ namespace Data.Characters.Movement
 
         public static bool IsMoveAvailable(Character entity)
         {
+            int moveX = 0;
+            int moveY = 0;
+            
+            if (entity.Direction == Direction.Right)
+            {
+                moveX = 1;
+            }
+            
+            if (entity.Direction == Direction.Left)
+            {
+                moveX = -1;
+            }
+            
+            if (entity.Direction == Direction.Up)
+            {
+                moveY = -1;
+            }
+
+            if (entity.Direction == Direction.Down)
+            {
+                moveY = 1;
+            }
+
+           // TO DO - code like this : if item in cooridnates(x+moveX,y+moveY).IsObtacle ==true return false 
+
             // TO DO - add check it there is a wall, item,...
             return false; // temp value
         }

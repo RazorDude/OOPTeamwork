@@ -26,3 +26,13 @@ C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\GUI\bin\Debug\Data.pd
 C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\GUI\obj\Debug\GUI.csprojResolveAssemblyReference.cache
 C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\GUI\obj\Debug\GUI.Properties.Resources.resources
 C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\GUI\obj\Debug\GUI.csproj.GenerateResource.Cache
+C:\Users\Tanya\Source\Repos\OOPTeamwork4\DarkDungeon.WF\GUI\bin\Debug\GUI.exe.config
+C:\Users\Tanya\Source\Repos\OOPTeamwork4\DarkDungeon.WF\GUI\obj\Debug\GUI.exe
+C:\Users\Tanya\Source\Repos\OOPTeamwork4\DarkDungeon.WF\GUI\obj\Debug\GUI.pdb
+C:\Users\Tanya\Source\Repos\OOPTeamwork4\DarkDungeon.WF\GUI\bin\Debug\GUI.exe
+C:\Users\Tanya\Source\Repos\OOPTeamwork4\DarkDungeon.WF\GUI\bin\Debug\GUI.pdb
+C:\Users\Tanya\Source\Repos\OOPTeamwork4\DarkDungeon.WF\GUI\bin\Debug\Data.dll
+C:\Users\Tanya\Source\Repos\OOPTeamwork4\DarkDungeon.WF\GUI\bin\Debug\Data.pdb
+C:\Users\Tanya\Source\Repos\OOPTeamwork4\DarkDungeon.WF\GUI\obj\Debug\GUI.csprojResolveAssemblyReference.cache
+C:\Users\Tanya\Source\Repos\OOPTeamwork4\DarkDungeon.WF\GUI\obj\Debug\GUI.Properties.Resources.resources
+C:\Users\Tanya\Source\Repos\OOPTeamwork4\DarkDungeon.WF\GUI\obj\Debug\GUI.csproj.GenerateResource.Cache
