@@ -1,4 +1,5 @@
 ﻿using System;
+using Data.Items.ItemsCollections.Inventories;
 
 namespace Data.Characters.PlayerCharacters
 {
@@ -15,11 +16,13 @@ namespace Data.Characters.PlayerCharacters
             get { return this.characterClass; }
             set { this.characterClass = value; }
         }
+        public Inventory Inventory { get; set; }
 
         public PlayerCharacter(string characterName)
             : base(100, 100, 100, 10, 10)
         {
             this.CharacterName = characterName;
+            this.Inventory = new Inventory(10, 1);
         }
     }
 }

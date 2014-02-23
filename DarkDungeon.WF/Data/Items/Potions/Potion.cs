@@ -11,5 +11,9 @@ namespace Data.Items.Potions
         {
             this.Bonus = bonus;
         }
+        public int Consume()
+        {
+            return this.Bonus;
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace Data.GridItem
     {
         public static PlayerDirectionChangedDelegate PlayerDirectionChanged;
         public static GridItemChangedDelegate OnGridItemChanged;
-        static GridViewItem[,] grid=new GridViewItem[19,31];
+        static GridViewItem[,] grid = new GridViewItem[19, 31];
         public static void InitializeGridItem(int row, int column, int imageIndex)
         {
             grid[row, column] = new GridViewItem(row, column, imageIndex);

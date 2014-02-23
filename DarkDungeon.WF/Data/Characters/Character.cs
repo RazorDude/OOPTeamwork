@@ -1,4 +1,4 @@
-﻿using Data.Items.ItemsCollections.Inventars;
+﻿using Data.Items.ItemsCollections.Inventories;
 using Data.GridItem;
 using System;
 

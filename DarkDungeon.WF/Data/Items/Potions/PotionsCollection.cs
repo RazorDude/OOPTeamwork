@@ -6,14 +6,13 @@ namespace Data.Items.Potions
 {
     public class PotionsCollection : Item
     {
-        public ItemsCollection HealthPotions { get; private set; }
-
+        public ItemsCollection StrengthPotions { get; private set; }
         public ItemsCollection ManaPotions { get; private set; }
 
         public PotionsCollection()
             : base(0)
         {
-            this.HealthPotions = new ItemsCollection(16, 50.0M);
+            this.StrengthPotions = new ItemsCollection(16, 50.0M);
             this.ManaPotions = new ItemsCollection(16, 50.0M);
         }
 
@@ -21,7 +20,7 @@ namespace Data.Items.Potions
         {
             decimal weight = 0.0M;
 
-            weight += this.HealthPotions.GetWeight();
+            weight += this.StrengthPotions.GetWeight();
             weight += this.ManaPotions.GetWeight();
 
             return weight;

@@ -4,17 +4,17 @@ using Data.Items.Potions;
 using System;
 using System.Collections.Generic;
 
-namespace Data.Items.ItemsCollections.Inventars
+namespace Data.Items.ItemsCollections.Inventories
 {
-    public abstract class Inventar : IWearable, IWeightable
+    public class Inventory : IWearable, IWeightable
     {
         public MoneyBag Money { get; protected set; }
 
-        public ItemsCollection Items { get; protected set; }
+        public ItemsCollection Items { get; set; }
 
-        public PotionsCollection Potions { get; protected set; }
+        public PotionsCollection Potions { get; set; }
         
-        public Inventar(int itemsCountCapacity, decimal itemsWeightCapacity)
+        public Inventory(int itemsCountCapacity, decimal itemsWeightCapacity)
         {
             this.Money = new MoneyBag();
             this.Items = new ItemsCollection(itemsCountCapacity, itemsWeightCapacity);

@@ -2,6 +2,8 @@
 using Data.Player;
 using Data.GridItem;
 using Data.Characters.Movement;
+using Data.Items;
+using Data.Items.Potions;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -11,8 +13,11 @@ namespace GUI
     public delegate void ExecuteDelegate(string param);
     public delegate void LoadMenuEnteredDelegate();
     public delegate void LoadCharacterDelegate(int row, int column, int imageIndex);
+
     public class Window : Form
     {
+        public static ExecuteDelegate Execute;
+        public static LoadCharacterDelegate LoadCharacter;
         bool SaveMenuLoadedFlag, LoadMenuLoadedFlag;
         string currentState;
         ImageList imageList;
@@ -23,8 +28,6 @@ namespace GUI
         CharacterSelectMenuScreen CharacterSelectMenu;
         Player player;
         Level level;
-        public static ExecuteDelegate Execute;
-        public static LoadCharacterDelegate LoadCharacter;
         void LoadImages()
         {
             imageList = new ImageList();
@@ -53,6 +56,9 @@ namespace GUI
             imageList.Images.Add(Image.FromFile("Data\\Image\\Arrow-Right.bmp"));
             imageList.Images.Add(Image.FromFile("Data\\Image\\Arrow-Up.bmp"));
             imageList.Images.Add(Image.FromFile("Data\\Image\\Arrow-Down.bmp"));
+            imageList.Images.Add(Image.FromFile("Data\\Image\\ExitDoor.bmp"));
+            imageList.Images.Add(Image.FromFile("Data\\Image\\PotionRed.bmp"));
+            imageList.Images.Add(Image.FromFile("Data\\Image\\Scroll.bmp"));
         }
         void Clear()
         {
@@ -95,7 +101,7 @@ namespace GUI
             this.Clear();
             this.BackColor = Color.Black;
             level = new Level();
-            level.LoadLevel("Data\\Levels\\level1.dat", this.imageList);
+            level.LoadLevel("Data\\Levels\\level1.dat", this.imageList, this.player.Character.CharacterClass);
             this.currentState = "Ingame";
             this.Controls.AddRange(level.GetControlData());
         }
@@ -116,11 +122,11 @@ namespace GUI
         {
             switch (slot)
             {
-                case 0: this.SaveMenu.SaveToSlot(1, this.level);
+                case 0: this.SaveMenu.SaveToSlot(1, this.level, this.player);
                     break;
-                case 1: this.SaveMenu.SaveToSlot(2, this.level);
+                case 1: this.SaveMenu.SaveToSlot(2, this.level, this.player);
                     break;
-                case 2: this.SaveMenu.SaveToSlot(3, this.level);
+                case 2: this.SaveMenu.SaveToSlot(3, this.level, this.player);
                     break;
             }
             this.Clear();
@@ -147,7 +153,13 @@ namespace GUI
             this.Clear();
             this.BackColor = Color.Black;
             this.currentState = "Ingame";
-            this.level.LoadLevel(this.LoadMenu.GetSlot(slot), this.imageList);
+            this.level = new Level();
+            this.player = new Player("");
+            this.player.CreateCharacter("", "");
+            this.level.LoadLevel(this.LoadMenu.GetSlot(slot), this.LoadMenu.GetPlayerSlot(slot), this.imageList);
+            this.player.PlayerName = this.level.PlayerName;
+            this.player.Character.CharacterName = this.level.CharacterName;
+            this.player.Character.CharacterClass = this.level.CharacterClass;
             this.Controls.AddRange(this.level.GetControlData());
         }
         void ExecuteResumeGame()
@@ -235,7 +247,59 @@ namespace GUI
         {
             this.Controls.Remove(this.level.GetVisualData(column, row));
             this.level.SetSquareImageIndex(column, row, imageIndex, this.imageList.Images[imageIndex], true);
-            this.Controls.Add(this.level.GetVisualData(column,row));
+            this.Controls.Add(this.level.GetVisualData(column, row));
+        }
+        void OnEncounter(string param, int direction)
+        {
+            switch (param)
+            {
+                case "PotionRed": this.player.Character.Inventory.Potions.StrengthPotions.AddItem(new StrengthPotion(0, 20));
+                    break;
+                case "Quiver": this.player.Character.Equipment.Arrows += 10;
+                    break;
+                case "Potion": this.player.Character.Inventory.Potions.ManaPotions.AddItem(new ManaPotion(0, 20));
+                    break;
+                case "Key": this.player.Character.Inventory.Items.AddItem(new Key());
+                    this.level.KeysOnMap--;
+                    break;
+                case "Door": if (this.player.Character.Inventory.Items.Items.Count > 0)
+                    {
+                        this.player.Character.Inventory.Items.RemoveItemByIndex(0);
+                        switch (direction)
+                        {
+                            case 1: this.level.SetSquareImageIndex((this.player.Character.Position.Column - 1), this.player.Character.Position.Row, 9, this.imageList.Images[9]);
+                                break;
+                            case 2: this.level.SetSquareImageIndex((this.player.Character.Position.Column + 1), this.player.Character.Position.Row, 9, this.imageList.Images[9]);
+                                break;
+                            case 3: this.level.SetSquareImageIndex(this.player.Character.Position.Column, (this.player.Character.Position.Row - 1), 9, this.imageList.Images[9]);
+                                break;
+                            case 4: this.level.SetSquareImageIndex(this.player.Character.Position.Column, (this.player.Character.Position.Row + 1), 9, this.imageList.Images[9]);
+                                break;
+                        }
+                    }
+                    break;
+                case "ExitDoor": if (this.level.KeysOnMap == 0)
+                    {
+                        switch (direction)
+                        {
+                            case 1: this.level.SetSquareImageIndex((this.player.Character.Position.Column - 1), this.player.Character.Position.Row, 9, this.imageList.Images[9]);
+                                break;
+                            case 2: this.level.SetSquareImageIndex((this.player.Character.Position.Column + 1), this.player.Character.Position.Row, 9, this.imageList.Images[9]);
+                                break;
+                            case 3: this.level.SetSquareImageIndex(this.player.Character.Position.Column, (this.player.Character.Position.Row - 1), 9, this.imageList.Images[9]);
+                                break;
+                            case 4: this.level.SetSquareImageIndex(this.player.Character.Position.Column, (this.player.Character.Position.Row + 1), 9, this.imageList.Images[9]);
+                                break;
+                        }
+                        this.Clear();
+                        this.BackColor = Color.Black;
+                        level = new Level();
+                        this.level.LoadLevel("Data\\Levels\\level2.dat", this.imageList, this.player.Character.CharacterClass);
+                        this.currentState = "Ingame";
+                        this.Controls.AddRange(level.GetControlData());
+                    }
+                    break;
+            }
         }
         void CharacterLoad(int row, int column, int imageIndex)
         {
@@ -277,6 +341,10 @@ namespace GUI
                     case Keys.Down: if (this.player.Character.Direction == 4) Movement.Move(this.player.Character);
                         else Movement.ChangeDirection(this.player.Character, 4);
                         return true;
+                    case Keys.P: 
+                        return true;
+                    case Keys.Space: switch (this.player.Character.CharacterClass) { }
+                        return true;
                 }
             }
             return base.ProcessCmdKey(ref msg, keyData);
@@ -292,6 +360,7 @@ namespace GUI
             LoadCharacter += this.CharacterLoad;
             LevelGrid.PlayerDirectionChanged += this.OnPlayerDirectionChange;
             LevelGrid.OnGridItemChanged += this.OnGridItemChange;
+            Movement.Encounter += this.OnEncounter;
             this.currentState = "";
             this.LoadImages();
             this.MainMenu = new MainMenuScreen();

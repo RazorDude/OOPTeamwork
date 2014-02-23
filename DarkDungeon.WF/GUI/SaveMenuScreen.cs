@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using Data.Player;
+using System.IO;
 using System.Windows.Forms;
 
 namespace GUI
@@ -24,10 +25,13 @@ namespace GUI
             this.InitializeButton(4, "ExitToMainMenu", "Exit to Main Menu", 130, 53,
                 (Screen.PrimaryScreen.Bounds.Width / 2 - 65), 590, c);
         }
-        public void SaveToSlot(int slot, Level level)
+        public void SaveToSlot(int slot, Level level, Player player)
         {
             string path = "Data\\Savedata\\Saves\\slot" + slot + ".dat";
             StreamWriter toSave = new StreamWriter(path);
+            toSave.WriteLine(player.PlayerName);
+            toSave.WriteLine(player.Character.CharacterName);
+            toSave.WriteLine(player.Character.CharacterClass);
             for (int i = 0; i < level.LevelHeight; i++)
             {
                 for (int j = 0; j < level.LevelWidth; j++)
@@ -35,7 +39,6 @@ namespace GUI
                     toSave.WriteLine(level.GetSquareImageIndex(j, i));
                 }
             }
-            //Save entity data
             toSave.Close();
         }
     }

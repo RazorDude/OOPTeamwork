@@ -4,5 +4,6 @@ namespace Data.Items.Potions
 {
     public interface IConsumable
     {
+        void Consume();
     }
 }

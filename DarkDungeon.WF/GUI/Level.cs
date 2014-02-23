@@ -35,6 +35,18 @@ namespace GUI
                 this.visualData.Anchor = AnchorStyles.Left;
                 this.visualData.Location = new System.Drawing.Point(x, y);
             }
+            public Square(int imageIndex, Image image, int x, int y, int row, int column, int squareWidth, string charClass)
+            {
+                this.imageIndex = imageIndex;
+                LevelGrid.InitializeGridItem(row, column, imageIndex);
+                this.visualData = new PictureBox();
+                this.visualData.Width = squareWidth;
+                this.visualData.Height = squareWidth;
+                this.visualData.Image = image;
+                this.visualData.SizeMode = PictureBoxSizeMode.StretchImage;
+                this.visualData.Anchor = AnchorStyles.Left;
+                this.visualData.Location = new System.Drawing.Point(x, y);
+            }
         }
         struct HealthBar
         {
@@ -78,7 +90,8 @@ namespace GUI
         }
 
         int squareWidth = 40, levelWidth = 31, levelHeight = 19, frameDimension = 20,
-            horizontalFrameImageIndex = 1, verticalFrameImageIndex = 2;
+            horizontalFrameImageIndex = 1, verticalFrameImageIndex = 2, keysOnMap = 0;
+        string playerName, characterName, charaterClass;
         PictureBox topFrame, leftFrame, rightFrame, bottomFrame;
         HealthBar healthBar;
         Square[,] levelMap;
@@ -89,6 +102,23 @@ namespace GUI
         public int LevelHeight
         {
             get { return this.levelHeight; }
+        }
+        public int KeysOnMap
+        {
+            get { return this.keysOnMap; }
+            set { this.keysOnMap = value; }
+        }
+        public string PlayerName
+        {
+            get { return this.playerName; }
+        }
+        public string CharacterName
+        {
+            get { return this.characterName; }
+        }
+        public string CharacterClass
+        {
+            get { return this.charaterClass; }
         }
         void LoadFrames(ImageList imageList)
         {
@@ -126,8 +156,9 @@ namespace GUI
             this.levelMap = new Square[this.levelHeight, this.levelWidth];
             this.healthBar = new HealthBar(this.frameDimension, 200, AnchorStyles.Bottom, 0, 0);
         }
-        public void LoadLevel(string path, ImageList imageList)
+        public void LoadLevel(string path, ImageList imageList, string charClass)
         {
+            this.keysOnMap = 0;
             StreamReader levelData = new StreamReader(path);
             int index, x = -20, y = this.frameDimension;
             for (int i = 0; i < levelHeight; i++)
@@ -141,15 +172,42 @@ namespace GUI
                     {
                         Window.LoadCharacter(i, j, index);
                     }
+                    if (index == 15)
+                    {
+                        switch (charClass)
+                        {
+                            case "Marksman":
+                                index = 16;
+                                break;
+                            case "Mage":
+                                index = 27;
+                                break;
+                        }
+                    }
+                    else if (index == 19)
+                    {
+                        switch (charClass)
+                        {
+                            case "Knight": index = 26;
+                                break;
+                            case "Marksman": index = 18;
+                                break;
+                        }
+                    }
+                    else if (index == 8) this.keysOnMap++;
                     levelMap[i, j] = new Square(index, imageList.Images[index], x, y, i, j, this.squareWidth);
                 }
                 y += this.squareWidth;
             }
             this.LoadFrames(imageList);
         }
-        public void LoadLevel(int[] savedSlot, ImageList imageList)
+        public void LoadLevel(int[] savedSlot, string[] playerData, ImageList imageList)
         {
+            this.keysOnMap = 0;
             int index = 0, x = -20, y = this.frameDimension;
+            this.playerName = playerData[0];
+            this.characterName = playerData[1];
+            this.charaterClass = playerData[2];
             for (int i = 0; i < levelHeight; i++)
             {
                 x = -20;
@@ -160,6 +218,7 @@ namespace GUI
                     {
                         Window.LoadCharacter(i, j, index);
                     }
+                    else if (savedSlot[index] == 8) this.keysOnMap++;
                     levelMap[i, j] = new Square(savedSlot[index], imageList.Images[savedSlot[index]], x, y, i, j, this.squareWidth);
                     index++;
                 }

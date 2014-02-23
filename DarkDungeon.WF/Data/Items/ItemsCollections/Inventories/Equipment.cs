@@ -2,9 +2,9 @@
 using Data.Items.Weapons;
 using System;
 
-namespace Data.Items.ItemsCollections.Inventars
+namespace Data.Items.ItemsCollections.Inventories
 {
-    public class Equipment : Inventar, IDamageDealable, IDefensible
+    public class Equipment : Inventory, IDamageDealable, IDefensible
     {
         public Weapon Weapon { get; private set; }
 
@@ -15,6 +15,7 @@ namespace Data.Items.ItemsCollections.Inventars
         public DefenceItem Boots { get; private set; }
 
         public DefenceItem Gloves { get; private set; }
+        public int Arrows { get; set; }
 
         public Equipment()
             : this(16, 50.0M)
@@ -30,6 +31,7 @@ namespace Data.Items.ItemsCollections.Inventars
             this.Helmet = null;
             this.Boots = null;
             this.Gloves = null;
+            this.Arrows = 0;
         }
 
         public Weapon SetWeapon(Weapon weapon)

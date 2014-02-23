@@ -6,6 +6,7 @@ namespace GUI
 {
     class LoadMenuScreen : MenuScreen
     {
+        string[][] playerSlots;
         int[][] slots;
         public static LoadMenuEnteredDelegate MenuEntered;
         void ReadSlot(int slot)
@@ -24,6 +25,9 @@ namespace GUI
                 return;
             }
             s = new StreamReader(path);
+            playerSlots[slot][0] = s.ReadLine();
+            playerSlots[slot][1] = s.ReadLine();
+            playerSlots[slot][2] = s.ReadLine();
             while (!s.EndOfStream)
             {
                 try
@@ -83,8 +87,17 @@ namespace GUI
             this.InitializeButton(4, "ExitToMainMenu", "Exit to Main Menu", 130, 53,
                 (Screen.PrimaryScreen.Bounds.Width / 2 - 65), 590, c);
             MenuEntered += this.OnMenuEntered;
+            this.playerSlots = new string[3][];
             this.slots = new int[3][];
-            for (int i = 0; i < 3; i++) slots[i] = new int[31 * 19];
+            for (int i = 0; i < 3; i++)
+            {
+                this.playerSlots[i] = new string[3];
+                this.slots[i] = new int[31 * 19];
+            }
+        }
+        public string[] GetPlayerSlot(int slot)
+        {
+            return this.playerSlots[slot];
         }
         public int[] GetSlot(int slot)
         {

@@ -65,9 +65,14 @@ namespace Data.GridItem
                     break;
                 case 24: this.value = "Arrow-Down";
                     break;
+                case 25: this.value = "ExitDoor";
+                    break;
+                case 26: this.value = "PotionRed";
+                    break;
+                case 27: this.value = "Scroll";
+                    break;
             }
         }
-
         public GridViewItem(Position position)
         {
             this.Position = position;
@@ -120,6 +125,12 @@ namespace Data.GridItem
                 case 23: this.value = "Arrow-Up";
                     break;
                 case 24: this.value = "Arrow-Down";
+                    break;
+                case 25: this.value = "ExitDoor";
+                    break;
+                case 26: this.value = "PotionRed";
+                    break;
+                case 27: this.value = "Scroll";
                     break;
             }
             LevelGrid.OnGridItemChanged(this.Position.Row, this.Position.Column, this.imageIndex);
