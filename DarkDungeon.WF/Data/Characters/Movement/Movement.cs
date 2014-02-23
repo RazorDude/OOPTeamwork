@@ -13,7 +13,6 @@ namespace Data.Characters.Movement
 
         public static bool IsMoveAvailable(Character entity)
         {
-<<<<<<< HEAD
             if (entity.Direction == (int)1)
             {
                 if (entity.Position.Column == 0) return false;
@@ -52,35 +51,6 @@ namespace Data.Characters.Movement
                 if (LevelGrid.GetGridItemValue((entity.Position.Row + 1), entity.Position.Column) == "Demon") return false;
             }
             return true; 
-=======
-            int moveX = 0;
-            int moveY = 0;
-            
-            if (entity.Direction == Direction.Right)
-            {
-                moveX = 1;
-            }
-            
-            if (entity.Direction == Direction.Left)
-            {
-                moveX = -1;
-            }
-            
-            if (entity.Direction == Direction.Up)
-            {
-                moveY = -1;
-            }
-
-            if (entity.Direction == Direction.Down)
-            {
-                moveY = 1;
-            }
-
-           // TO DO - code like this : if item in cooridnates(x+moveX,y+moveY).IsObtacle ==true return false 
-
-            // TO DO - add check it there is a wall, item,...
-            return false; // temp value
->>>>>>> 7867dd1429f112bfb10aaa8cca95367677c33283
         }
 
         public static bool CollisionDetect(Character entity, PlayerCharacter hero)
