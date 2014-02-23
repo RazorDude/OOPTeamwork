@@ -59,6 +59,7 @@
     <Compile Include="Items\IWeightable.cs" />
     <Compile Include="Items\Money\ITransactable.cs" />
     <Compile Include="Items\Money\Money.cs" />
+    <Compile Include="Items\Obtacles\Obtacle.cs" />
     <Compile Include="Items\Potions\HealthPotion.cs" />
     <Compile Include="Items\Potions\IConsumable.cs" />
     <Compile Include="Items\Potions\ManaPotion.cs" />
@@ -73,6 +74,7 @@
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
