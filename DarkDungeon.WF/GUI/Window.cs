@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
+using Data.Player;
+using Data.GridItem;
+using Data.Characters.Movement;
 using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
 
 namespace GUI
@@ -9,6 +10,7 @@ namespace GUI
     public delegate void OnClick(object sender, EventArgs e);
     public delegate void ExecuteDelegate(string param);
     public delegate void LoadMenuEnteredDelegate();
+    public delegate void LoadCharacterDelegate(int row, int column, int imageIndex);
     public class Window : Form
     {
         bool SaveMenuLoadedFlag, LoadMenuLoadedFlag;
@@ -18,8 +20,11 @@ namespace GUI
         PauseMenuScreen PauseMenu;
         SaveMenuScreen SaveMenu;
         LoadMenuScreen LoadMenu;
+        CharacterSelectMenuScreen CharacterSelectMenu;
+        Player player;
         Level level;
         public static ExecuteDelegate Execute;
+        public static LoadCharacterDelegate LoadCharacter;
         void LoadImages()
         {
             imageList = new ImageList();
@@ -70,6 +75,20 @@ namespace GUI
             this.BackgroundImage = this.imageList.Images[0];
             this.BackgroundImageLayout = ImageLayout.Stretch;
             this.Controls.AddRange(this.PauseMenu.GetControlData());
+        }
+        void ExecuteCharacterSelectMenu()
+        {
+            this.currentState = "Character select";
+            this.Clear();
+            this.BackgroundImage = this.imageList.Images[0];
+            this.BackgroundImageLayout = ImageLayout.Stretch;
+            this.Controls.AddRange(this.CharacterSelectMenu.GetControlData());
+        }
+        void ExecuteCharacter(string param)
+        {
+            this.player = new Player(this.CharacterSelectMenu.PlayerName);
+            this.player.CreateCharacter(this.CharacterSelectMenu.CharacterName, param);
+            this.ExecuteNewGame();
         }
         void ExecuteNewGame()
         {
@@ -148,6 +167,14 @@ namespace GUI
                     break;
                 case "Pause menu": this.ExecutePauseMenu();
                     break;
+                case "Character select": this.ExecuteCharacterSelectMenu();
+                    break;
+                case "Knight": this.ExecuteCharacter("Knight");
+                    break;
+                case "Marksman": this.ExecuteCharacter("Marksman");
+                    break;
+                case "Mage": this.ExecuteCharacter("Mage");
+                    break;
                 case "New game": this.ExecuteNewGame();
                     break;
                 case "Save game": this.ExecuteSaveGameMenu();
@@ -176,6 +203,56 @@ namespace GUI
                     break;
             }
         }
+        void OnPlayerDirectionChange(int direction)
+        {
+            int row = this.player.Character.Position.Row, column = this.player.Character.Position.Column;
+            if (direction == 1)
+            {
+                this.Controls.Remove(this.level.GetVisualData(column, row));
+                this.level.SetSquareImageIndex(column, row, 10, this.imageList.Images[10]);
+                this.Controls.Add(this.level.GetVisualData(column, row));
+            }
+            else if (direction == 2)
+            {
+                this.Controls.Remove(this.level.GetVisualData(column, row));
+                this.level.SetSquareImageIndex(column, row, 11, this.imageList.Images[11]);
+                this.Controls.Add(this.level.GetVisualData(column, row));
+            }
+            else if (direction == 3)
+            {
+                this.Controls.Remove(this.level.GetVisualData(column, row));
+                this.level.SetSquareImageIndex(column, row, 12, this.imageList.Images[12]);
+                this.Controls.Add(this.level.GetVisualData(column, row));
+            }
+            else if (direction == 4)
+            {
+                this.Controls.Remove(this.level.GetVisualData(column, row));
+                this.level.SetSquareImageIndex(column, row, 13, this.imageList.Images[13]);
+                this.Controls.Add(this.level.GetVisualData(column, row));
+            }
+        }
+        void OnGridItemChange(int row, int column, int imageIndex)
+        {
+            this.Controls.Remove(this.level.GetVisualData(column, row));
+            this.level.SetSquareImageIndex(column, row, imageIndex, this.imageList.Images[imageIndex], true);
+            this.Controls.Add(this.level.GetVisualData(column,row));
+        }
+        void CharacterLoad(int row, int column, int imageIndex)
+        {
+            this.player.Character.Position.Row = row;
+            this.player.Character.Position.Column = column;
+            switch (imageIndex)
+            {
+                case 10: this.player.Character.Direction = 1;
+                    break;
+                case 11: this.player.Character.Direction = 2;
+                    break;
+                case 12: this.player.Character.Direction = 3;
+                    break;
+                case 13: this.player.Character.Direction = 4;
+                    break;
+            }
+        }
         bool IsIngame()
         {
             return (this.currentState == "Ingame");
@@ -188,13 +265,17 @@ namespace GUI
                 {
                     case Keys.Escape: Execute("Pause menu");
                         return true;
-                    case Keys.Left:
+                    case Keys.Left: if (this.player.Character.Direction == 1) Movement.Move(this.player.Character);
+                        else Movement.ChangeDirection(this.player.Character, 1);
                         return true;
-                    case Keys.Right:
+                    case Keys.Right: if (this.player.Character.Direction == 2) Movement.Move(this.player.Character);
+                        else Movement.ChangeDirection(this.player.Character, 2);
                         return true;
-                    case Keys.Up:
+                    case Keys.Up: if (this.player.Character.Direction == 3) Movement.Move(this.player.Character);
+                        else Movement.ChangeDirection(this.player.Character, 3);
                         return true;
-                    case Keys.Down:
+                    case Keys.Down: if (this.player.Character.Direction == 4) Movement.Move(this.player.Character);
+                        else Movement.ChangeDirection(this.player.Character, 4);
                         return true;
                 }
             }
@@ -208,10 +289,14 @@ namespace GUI
             this.SaveMenuLoadedFlag = false;
             this.LoadMenuLoadedFlag = false;
             Execute += this.ExecuteItem;
+            LoadCharacter += this.CharacterLoad;
+            LevelGrid.PlayerDirectionChanged += this.OnPlayerDirectionChange;
+            LevelGrid.OnGridItemChanged += this.OnGridItemChange;
             this.currentState = "";
             this.LoadImages();
             this.MainMenu = new MainMenuScreen();
             this.PauseMenu = new PauseMenuScreen();
+            this.CharacterSelectMenu = new CharacterSelectMenuScreen();
             Execute("Main menu");
         }
     }

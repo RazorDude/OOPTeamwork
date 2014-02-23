@@ -1,4 +1,5 @@
 ﻿using System;
+using Data.GridItem;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -11,74 +12,21 @@ namespace GUI
         struct Square
         {
             int imageIndex;
-            string value;
             PictureBox visualData;
             public int ImageIndex
             {
                 get { return this.imageIndex; }
                 set { this.imageIndex = value; }
             }
-            public string Value
-            {
-                get { return this.value; }
-                set { this.value = value; }
-            }
             public PictureBox VisualData
             {
                 get { return this.visualData; }
                 set { this.visualData = value; }
             }
-            public Square(int imageIndex, Image image, int x, int y, int squareWidth)
+            public Square(int imageIndex, Image image, int x, int y, int row, int column, int squareWidth)
             {
                 this.imageIndex = imageIndex;
-                this.value = "";
-                switch (this.imageIndex)
-                {
-                    case 3: this.value = "Stone";
-                        break;
-                    case 4: this.value = "StoneWall";
-                        break;
-                    case 5: this.value = "Brick";
-                        break;
-                    case 6: this.value = "BrickWall";
-                        break;
-                    case 7: this.value = "Door";
-                        break;
-                    case 8: this.value = "Key";
-                        break;
-                    case 9: this.value = "Empty";
-                        break;
-                    case 10: this.value = "Character-Left";
-                        break;
-                    case 11: this.value = "Character-Right";
-                        break;
-                    case 12: this.value = "Character-Up";
-                        break;
-                    case 13: this.value = "Character-Down";
-                        break;
-                    case 14: this.value = "Demon";
-                        break;
-                    case 15: this.value = "Sword";
-                        break;
-                    case 16: this.value = "Bow";
-                        break;
-                    case 17: this.value = "Armor";
-                        break;
-                    case 18: this.value = "Quiver";
-                        break;
-                    case 19: this.value = "Potion";
-                        break;
-                    case 20: this.value = "Fireball";
-                        break;
-                    case 21: this.value = "Arrow-Left";
-                        break;
-                    case 22: this.value = "Arrow-Right";
-                        break;
-                    case 23: this.value = "Arrow-Up";
-                        break;
-                    case 24: this.value = "Arrow-Down";
-                        break;
-                }
+                LevelGrid.InitializeGridItem(row, column, imageIndex);
                 this.visualData = new PictureBox();
                 this.visualData.Width = squareWidth;
                 this.visualData.Height = squareWidth;
@@ -189,7 +137,11 @@ namespace GUI
                 {
                     x += this.squareWidth;
                     index = int.Parse(levelData.ReadLine());
-                    levelMap[i, j] = new Square(index, imageList.Images[index], x, y, this.squareWidth);
+                    if ((index == 10) || (index == 11) || (index == 12) || (index == 13))
+                    {
+                        Window.LoadCharacter(i, j, index);
+                    }
+                    levelMap[i, j] = new Square(index, imageList.Images[index], x, y, i, j, this.squareWidth);
                 }
                 y += this.squareWidth;
             }
@@ -204,7 +156,11 @@ namespace GUI
                 for (int j = 0; j < levelWidth; j++)
                 {
                     x += this.squareWidth;
-                    levelMap[i, j] = new Square(savedSlot[index], imageList.Images[savedSlot[index]], x, y, this.squareWidth);
+                    if ((savedSlot[index] == 10) || (savedSlot[index] == 11) || (savedSlot[index] == 12) || (savedSlot[index] == 13))
+                    {
+                        Window.LoadCharacter(i, j, index);
+                    }
+                    levelMap[i, j] = new Square(savedSlot[index], imageList.Images[savedSlot[index]], x, y, i, j, this.squareWidth);
                     index++;
                 }
                 y += this.squareWidth;
@@ -215,9 +171,20 @@ namespace GUI
         {
             return this.levelMap[y, x].ImageIndex;
         }
-        public string GetSquareValue(int x, int y)
+        public void SetSquareImageIndex(int x, int y, int imageIndex, Image image)
         {
-            return this.levelMap[y, x].Value;
+            this.levelMap[y, x].ImageIndex = imageIndex;
+            this.levelMap[y, x].VisualData.Image = image;
+            LevelGrid.SetGridItemValue(y, x, imageIndex);
+        }
+        public void SetSquareImageIndex(int x, int y, int imageIndex, Image image, bool noCallBack)
+        {
+            this.levelMap[y, x].ImageIndex = imageIndex;
+            this.levelMap[y, x].VisualData.Image = image;
+        }
+        public Control GetVisualData(int x, int y)
+        {
+            return this.levelMap[y, x].VisualData;
         }
         public override Control[] GetControlData()
         {

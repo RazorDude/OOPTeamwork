@@ -16,9 +16,10 @@ namespace Data.Player
             this.Character = null;
         }
 
-        public void CreateCharacter(string characterName)
+        public void CreateCharacter(string characterName, string characterClass)
         {
             this.Character = new PlayerCharacter(characterName);
+            this.Character.CharacterClass = characterClass;
         }
     }
 }

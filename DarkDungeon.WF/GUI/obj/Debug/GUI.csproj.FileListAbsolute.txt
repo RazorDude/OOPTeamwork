@@ -26,3 +26,5 @@ C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\GUI\bin\Debug\Data.pd
 C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\GUI\obj\Debug\GUI.csprojResolveAssemblyReference.cache
 C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\GUI\obj\Debug\GUI.Properties.Resources.resources
 C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\GUI\obj\Debug\GUI.csproj.GenerateResource.Cache
+C:\Users\RazorDude\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\GUI\bin\Debug\Data.dll
+C:\Users\RazorDude\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\GUI\bin\Debug\Data.pdb

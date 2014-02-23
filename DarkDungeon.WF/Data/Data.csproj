@@ -44,11 +44,11 @@
     <Compile Include="Characters\IFightable.cs" />
     <Compile Include="Characters\IImprovable.cs" />
     <Compile Include="Characters\Movement\Direction.cs" />
-    <Compile Include="Characters\Movement\IMovable.cs" />
     <Compile Include="Characters\Movement\MazeSolver.cs" />
     <Compile Include="Characters\Movement\Movement.cs" />
     <Compile Include="Characters\PlayerCharacters\PlayerCharacter.cs" />
     <Compile Include="GridViewItem\GridViewItem.cs" />
+    <Compile Include="GridViewItem\LevelGrid.cs" />
     <Compile Include="Items\ItemsCollections\Inventars\Equipment.cs" />
     <Compile Include="Items\DefenceItems\DefenceItem.cs" />
     <Compile Include="Items\DefenceItems\IDefensible.cs" />

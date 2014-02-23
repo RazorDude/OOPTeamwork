@@ -1,9 +1,5 @@
 ﻿using Data.Characters.PlayerCharacters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Data.GridItem;
 
 namespace Data.Characters.Movement
 {
@@ -12,12 +8,49 @@ namespace Data.Characters.Movement
         public static void ChangeDirection(Character entity, int direction)
         {
             entity.Direction = direction;
+            if (entity is PlayerCharacter) LevelGrid.PlayerDirectionChanged(direction);
         }
 
         public static bool IsMoveAvailable(Character entity)
         {
-            // TO DO - add check it there is a wall, item,...
-            return false; // temp value
+            if (entity.Direction == (int)1)
+            {
+                if (entity.Position.Column == 0) return false;
+                if (LevelGrid.GetGridItemValue(entity.Position.Row, (entity.Position.Column - 1)) == "Stone") return false;
+                if (LevelGrid.GetGridItemValue(entity.Position.Row, (entity.Position.Column - 1)) == "StoneWall") return false;
+                if (LevelGrid.GetGridItemValue(entity.Position.Row, (entity.Position.Column - 1)) == "Brick") return false;
+                if (LevelGrid.GetGridItemValue(entity.Position.Row, (entity.Position.Column - 1)) == "BrickWall") return false;
+                if (LevelGrid.GetGridItemValue(entity.Position.Row, (entity.Position.Column - 1)) == "Demon") return false;
+            }
+            else if (entity.Direction == (int)2)
+            {
+                if (entity.Position.Column == 30) return false;
+                if (LevelGrid.GetGridItemValue(entity.Position.Row, (entity.Position.Column + 1)) == "Stone") return false;
+                if (LevelGrid.GetGridItemValue(entity.Position.Row, (entity.Position.Column + 1)) == "StoneWall") return false;
+                if (LevelGrid.GetGridItemValue(entity.Position.Row, (entity.Position.Column + 1)) == "Brick") return false;
+                if (LevelGrid.GetGridItemValue(entity.Position.Row, (entity.Position.Column + 1)) == "BrickWall") return false;
+                if (LevelGrid.GetGridItemValue(entity.Position.Row, (entity.Position.Column + 1)) == "Demon") return false;
+            }
+            else if (entity.Direction == (int)3)
+            {
+                if (entity.Position.Row == 0) return false;
+                if (LevelGrid.GetGridItemValue((entity.Position.Row - 1), entity.Position.Column) == "Stone") return false;
+                if (LevelGrid.GetGridItemValue((entity.Position.Row - 1), entity.Position.Column) == "StoneWall") return false;
+                if (LevelGrid.GetGridItemValue((entity.Position.Row - 1), entity.Position.Column) == "Brick") return false;
+                if (LevelGrid.GetGridItemValue((entity.Position.Row - 1), entity.Position.Column) == "BrickWall") return false;
+                if (LevelGrid.GetGridItemValue((entity.Position.Row - 1), entity.Position.Column) == "Demon") return false;
+            }
+            else if (entity.Direction == (int)4)
+            {
+                if (entity.Position.Row == 18) return false;
+                if (entity.Position.Row == 0) return false;
+                if (LevelGrid.GetGridItemValue((entity.Position.Row + 1), entity.Position.Column) == "Stone") return false;
+                if (LevelGrid.GetGridItemValue((entity.Position.Row + 1), entity.Position.Column) == "StoneWall") return false;
+                if (LevelGrid.GetGridItemValue((entity.Position.Row + 1), entity.Position.Column) == "Brick") return false;
+                if (LevelGrid.GetGridItemValue((entity.Position.Row + 1), entity.Position.Column) == "BrickWall") return false;
+                if (LevelGrid.GetGridItemValue((entity.Position.Row + 1), entity.Position.Column) == "Demon") return false;
+            }
+            return true; 
         }
 
         public static bool CollisionDetect(Character entity, PlayerCharacter hero)
@@ -31,28 +64,47 @@ namespace Data.Characters.Movement
 
         public static void Move(Character entity)
         {
-            int direction = entity.Direction;
-
-            // TO DO Remove old position from the screen
-
+            int direction = entity.Direction, tempImageIndex = 0;
             if (direction == (int)Direction.Up)
             {
-                entity.Position.Row--;
+                if (IsMoveAvailable(entity))
+                {
+                    tempImageIndex = LevelGrid.GetGridItemImageIndex(entity.Position.Row, entity.Position.Column);
+                    LevelGrid.SetGridItemValue(entity.Position.Row, entity.Position.Column, 9);
+                    LevelGrid.SetGridItemValue((entity.Position.Row - 1), entity.Position.Column, tempImageIndex);
+                    entity.Position.Row--;
+                }
             }
             if (direction == (int)Direction.Down)
             {
-                entity.Position.Row++;
+                if (IsMoveAvailable(entity))
+                {
+                    tempImageIndex = LevelGrid.GetGridItemImageIndex(entity.Position.Row, entity.Position.Column);
+                    LevelGrid.SetGridItemValue(entity.Position.Row, entity.Position.Column, 9);
+                    LevelGrid.SetGridItemValue((entity.Position.Row + 1), entity.Position.Column, tempImageIndex);
+                    entity.Position.Row++;
+                }
             }
             if (direction == (int)Direction.Left)
             {
-                entity.Position.Column--;
+                if (IsMoveAvailable(entity))
+                {
+                    tempImageIndex = LevelGrid.GetGridItemImageIndex(entity.Position.Row, entity.Position.Column);
+                    LevelGrid.SetGridItemValue(entity.Position.Row, entity.Position.Column, 9);
+                    LevelGrid.SetGridItemValue(entity.Position.Row, (entity.Position.Column - 1), tempImageIndex);
+                    entity.Position.Column--;
+                }
             }
             if (direction == (int)Direction.Right)
             {
-                entity.Position.Column++;
+                if (IsMoveAvailable(entity))
+                {
+                    tempImageIndex = LevelGrid.GetGridItemImageIndex(entity.Position.Row, entity.Position.Column);
+                    LevelGrid.SetGridItemValue(entity.Position.Row, entity.Position.Column, 9);
+                    LevelGrid.SetGridItemValue(entity.Position.Row, (entity.Position.Column + 1), tempImageIndex); 
+                    entity.Position.Column++;
+                }
             }
-
-            // TO DO Draw new position
         }
     }
 }

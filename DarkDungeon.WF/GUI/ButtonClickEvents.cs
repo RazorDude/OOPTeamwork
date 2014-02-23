@@ -6,7 +6,19 @@ namespace GUI
     {
         public static void NewGameClick(object sender, EventArgs e)
         {
-            Window.Execute("New game");
+            Window.Execute("Character select");
+        }
+        public static void KnightKlick(object sender, EventArgs e)
+        {
+            Window.Execute("Knight");
+        }
+        public static void MarksmanKlick(object sender, EventArgs e)
+        {
+            Window.Execute("Marksman");
+        }
+        public static void MageKlick(object sender, EventArgs e)
+        {
+            Window.Execute("Mage");
         }
         public static void SaveGameClick(object sender, EventArgs e)
         {
