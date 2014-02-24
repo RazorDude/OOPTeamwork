@@ -267,7 +267,7 @@ namespace GUI
         public int[,] SimplifeidField()
         {
             int[,] result = new int[this.LevelHeight, this.LevelWidth];
-            var a = this.levelMap;
+           
             for (int row = 0; row < this.LevelHeight; row++)
             {
                 for (int col = 0; col < this.LevelWidth; col++)

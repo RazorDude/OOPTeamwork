@@ -264,11 +264,7 @@ namespace Data.Characters.Movement
                     }
                 }
             }
-<<<<<<< HEAD
-            return true;
-=======
             return true; 
->>>>>>> fe6b2f879d76d17ff22b514607ace8d21e1876ee
         }
         public static bool CollisionDetect(Character entity, PlayerCharacter hero)
         {

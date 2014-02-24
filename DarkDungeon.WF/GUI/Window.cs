@@ -1,13 +1,10 @@
 ﻿using Data.Characters.Enemies;
 using Data.Characters.Movement;
-<<<<<<< HEAD
 using Data.Items;
 using Data.Items.Potions;
-=======
 using Data.GridItem;
 using Data.Player;
 using System;
->>>>>>> fe6b2f879d76d17ff22b514607ace8d21e1876ee
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -107,13 +104,8 @@ namespace GUI
             this.BackColor = Color.Black;
             this.enemy = new Enemy();
             level = new Level();
-<<<<<<< HEAD
             level.LoadLevel("Data\\Levels\\level1.dat", this.imageList, this.player.Character.CharacterClass);
             this.currentState = "Ingame";
-=======
-            level.LoadLevel("Data\\Levels\\level1.dat", this.imageList);
-            this.currentState = "Ingame";            
->>>>>>> fe6b2f879d76d17ff22b514607ace8d21e1876ee
             this.Controls.AddRange(level.GetControlData());
         }
         void ExecuteSaveGameMenu()
@@ -257,7 +249,7 @@ namespace GUI
 
         protected void MoveEnemy()
         {
-            int[,] map = this.level.SimplifeidField(); 
+            int[,] map = this.level.SimplifeidField();
             MazeSolver playGround = new MazeSolver(map);
             this.enemy.FindDirectionAndMove(playGround, this.player.Character);
         }
@@ -267,7 +259,6 @@ namespace GUI
             this.Controls.Remove(this.level.GetVisualData(column, row));
             this.level.SetSquareImageIndex(column, row, imageIndex, this.imageList.Images[imageIndex], true);
             this.Controls.Add(this.level.GetVisualData(column, row));
-<<<<<<< HEAD
         }
         void OnEncounter(string param, int direction)
         {
@@ -320,8 +311,6 @@ namespace GUI
                     }
                     break;
             }
-=======
->>>>>>> fe6b2f879d76d17ff22b514607ace8d21e1876ee
         }
         void CharacterLoad(int row, int column, int imageIndex)
         {
@@ -373,15 +362,7 @@ namespace GUI
                     case Keys.Down: if (this.player.Character.Direction == 4) Movement.Move(this.player.Character);
                         else Movement.ChangeDirection(this.player.Character, 4);
                         return true;
-<<<<<<< HEAD
-                    case Keys.P: 
-                        return true;
-                    case Keys.Space: switch (this.player.Character.CharacterClass) { }
-                        return true;
                 }
-=======
-                }               
->>>>>>> fe6b2f879d76d17ff22b514607ace8d21e1876ee
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
@@ -402,7 +383,7 @@ namespace GUI
             this.MainMenu = new MainMenuScreen();
             this.PauseMenu = new PauseMenuScreen();
             this.CharacterSelectMenu = new CharacterSelectMenuScreen();
-            
+
             Execute("Main menu");
 
         }
