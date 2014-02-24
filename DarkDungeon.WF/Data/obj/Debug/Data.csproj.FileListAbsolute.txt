@@ -9,15 +9,25 @@ C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\Data\obj\Debug\Data.c
 C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\Data\obj\Debug\Data.dll
 C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\Data\obj\Debug\Data.pdb
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> fe6b2f879d76d17ff22b514607ace8d21e1876ee
 C:\Users\RazorDude\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
 C:\Users\RazorDude\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\Data\obj\Debug\Data.dll
 C:\Users\RazorDude\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\Data\obj\Debug\Data.pdb
 C:\Users\RazorDude\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\Data\bin\Debug\Data.dll
 C:\Users\RazorDude\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\Data\bin\Debug\Data.pdb
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> fe6b2f879d76d17ff22b514607ace8d21e1876ee
 C:\Users\Tanya\Source\Repos\OOPTeamwork4\DarkDungeon.WF\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
 C:\Users\Tanya\Source\Repos\OOPTeamwork4\DarkDungeon.WF\Data\obj\Debug\Data.dll
 C:\Users\Tanya\Source\Repos\OOPTeamwork4\DarkDungeon.WF\Data\obj\Debug\Data.pdb
 C:\Users\Tanya\Source\Repos\OOPTeamwork4\DarkDungeon.WF\Data\bin\Debug\Data.dll
 C:\Users\Tanya\Source\Repos\OOPTeamwork4\DarkDungeon.WF\Data\bin\Debug\Data.pdb
+<<<<<<< HEAD
 >>>>>>> 7867dd1429f112bfb10aaa8cca95367677c33283
+=======
+
+>>>>>>> fe6b2f879d76d17ff22b514607ace8d21e1876ee

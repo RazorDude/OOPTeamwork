@@ -20,17 +20,14 @@ namespace Data.Characters.Enemies
         {
         }
 
-        public void FindDirectionAndMove(MovementFolder.MazeSolver maze)
+        public void FindDirectionAndMove(MovementFolder.MazeSolver maze, Data.Characters.PlayerCharacters.PlayerCharacter hero)
         {
-            // temp value. To be updated with the correct object
-            var hero = new Data.Characters.PlayerCharacters.PlayerCharacter("Hero");
-
             int nextDirection = maze.FindPath(this.Position.Row, this.Position.Column, hero.Position.Row, hero.Position.Column);
             MovementFolder.Movement.ChangeDirection(this, nextDirection);
             MovementFolder.Movement.Move(this);
             if (MovementFolder.Movement.CollisionDetect(this, hero))
             {
-               // TO DO Battle
+                // TO DO Battle
             }
         }
     }
