@@ -6,6 +6,7 @@ namespace Data.Characters
 {
     public abstract class Character : GridViewItem, IImprovable, IFightable
     {
+        public bool IsProjectile { get; set; }
         public Equipment Equipment { get; protected set; }
 
         public int Level { get; protected set; }

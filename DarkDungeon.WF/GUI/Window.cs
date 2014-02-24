@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Data;
 using Data.Player;
 using Data.GridItem;
 using Data.Characters.Movement;
 using Data.Items;
 using Data.Items.Potions;
+using System;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace GUI
@@ -13,6 +15,7 @@ namespace GUI
     public delegate void ExecuteDelegate(string param);
     public delegate void LoadMenuEnteredDelegate();
     public delegate void LoadCharacterDelegate(int row, int column, int imageIndex);
+    delegate void ChangeDelegate (int[] data);
 
     public class Window : Form
     {
@@ -28,6 +31,7 @@ namespace GUI
         CharacterSelectMenuScreen CharacterSelectMenu;
         Player player;
         Level level;
+        ShotLogic Shot;
         void LoadImages()
         {
             imageList = new ImageList();
@@ -245,9 +249,23 @@ namespace GUI
         }
         void OnGridItemChange(int row, int column, int imageIndex)
         {
-            this.Controls.Remove(this.level.GetVisualData(column, row));
-            this.level.SetSquareImageIndex(column, row, imageIndex, this.imageList.Images[imageIndex], true);
-            this.Controls.Add(this.level.GetVisualData(column, row));
+            int[] a = new int[3];
+            a[0] = row;
+            a[1] = column;
+            a[2] = imageIndex;
+            if (InvokeRequired)
+            {
+                ChangeDelegate d = new ChangeDelegate(this.UpdateOnGridItemChange);
+                Invoke(d,a);
+                return;
+            }
+            this.UpdateOnGridItemChange(a);
+        }
+        void UpdateOnGridItemChange(int[] data)
+        {
+            this.Controls.Remove(this.level.GetVisualData(data[1], data[0]));
+            this.level.SetSquareImageIndex(data[1], data[0], data[2], this.imageList.Images[data[2]], true);
+            this.Controls.Add(this.level.GetVisualData(data[1], data[0]));
         }
         void OnEncounter(string param, int direction)
         {
@@ -341,9 +359,31 @@ namespace GUI
                     case Keys.Down: if (this.player.Character.Direction == 4) Movement.Move(this.player.Character);
                         else Movement.ChangeDirection(this.player.Character, 4);
                         return true;
-                    case Keys.P: 
+                    case Keys.P:
                         return true;
-                    case Keys.Space: switch (this.player.Character.CharacterClass) { }
+                    case Keys.Space: 
+                        if (this.player.Character.CharacterClass == "Knight") { }
+                        else if ((this.player.Character.CharacterClass == "Marksman") && (this.player.Character.Equipment.Arrows > 0))
+                        {
+                            if (Movement.IsMoveAvailable(this.player.Character))
+                            {
+                                if (this.player.Character.CharacterClass == "Marksman") this.player.Character.Equipment.Arrows--;
+                                switch (this.player.Character.Direction)
+                                {
+                                    case 1: this.Shot = new ShotLogic(this.player.Character.Position.Row, (this.player.Character.Position.Column - 1), this.player.Character.Direction, this.player.Character.CharacterClass);
+                                        break;
+                                    case 2: this.Shot = new ShotLogic(this.player.Character.Position.Row, (this.player.Character.Position.Column + 1), this.player.Character.Direction, this.player.Character.CharacterClass);
+                                        break;
+                                    case 3: this.Shot = new ShotLogic((this.player.Character.Position.Row - 1), this.player.Character.Position.Column, this.player.Character.Direction, this.player.Character.CharacterClass);
+                                        break;
+                                    case 4: this.Shot = new ShotLogic((this.player.Character.Position.Row + 1), this.player.Character.Position.Column, this.player.Character.Direction, this.player.Character.CharacterClass);
+                                        break;
+                                }
+                            }
+                            Thread ShotThread = new Thread(new ThreadStart(this.Shot.Shoot));
+                            ShotThread.Start();
+                        }
+                        else if (this.player.Character.CharacterClass == "Mage") { }
                         return true;
                 }
             }

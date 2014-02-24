@@ -23,6 +23,7 @@ namespace Data.Characters.PlayerCharacters
         {
             this.CharacterName = characterName;
             this.Inventory = new Inventory(10, 1);
+            this.IsProjectile = false;
         }
     }
 }

@@ -27,51 +27,61 @@ namespace Data.Characters.Movement
                 {
                     if (LevelGrid.GetGridItemValue(entity.Position.Row, (entity.Position.Column - 1)) == "PotionRed")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("PotionRed", entity.Direction);
                         return true;
                     }
                     if (LevelGrid.GetGridItemValue(entity.Position.Row, (entity.Position.Column - 1)) == "Quiver")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("Quiver", entity.Direction);
                         return true;
                     }
                     if (LevelGrid.GetGridItemValue(entity.Position.Row, (entity.Position.Column - 1)) == "Potion")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("Potion", entity.Direction);
                         return true;
                     }
                     if (LevelGrid.GetGridItemValue(entity.Position.Row, (entity.Position.Column - 1)) == "Sword")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("Sword", entity.Direction);
                         return true;
                     }
                     if (LevelGrid.GetGridItemValue(entity.Position.Row, (entity.Position.Column - 1)) == "Bow")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("Bow", entity.Direction);
                         return true;
                     }
                     if (LevelGrid.GetGridItemValue(entity.Position.Row, (entity.Position.Column - 1)) == "Scroll")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("Scroll", entity.Direction);
                         return true;
                     }
                     if (LevelGrid.GetGridItemValue(entity.Position.Row, (entity.Position.Column - 1)) == "Armor")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("Armor", entity.Direction);
                         return true;
                     }
                     if (LevelGrid.GetGridItemValue(entity.Position.Row, (entity.Position.Column - 1)) == "Key")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("Key", entity.Direction);
                         return true;
                     }
                     if (LevelGrid.GetGridItemValue(entity.Position.Row, (entity.Position.Column - 1)) == "Door")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("Door", entity.Direction);
                         return false;
                     }
                     if (LevelGrid.GetGridItemValue(entity.Position.Row, (entity.Position.Column - 1)) == "ExitDoor")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("ExitDoor", entity.Direction);
                         return false;
                     }
@@ -89,51 +99,61 @@ namespace Data.Characters.Movement
                 {
                     if (LevelGrid.GetGridItemValue(entity.Position.Row, (entity.Position.Column + 1)) == "PotionRed")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("PotionRed", entity.Direction);
                         return true;
                     }
                     if (LevelGrid.GetGridItemValue(entity.Position.Row, (entity.Position.Column + 1)) == "Quiver")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("Quiver", entity.Direction);
                         return true;
                     }
                     if (LevelGrid.GetGridItemValue(entity.Position.Row, (entity.Position.Column + 1)) == "Potion")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("Potion", entity.Direction);
                         return true;
                     }
                     if (LevelGrid.GetGridItemValue(entity.Position.Row, (entity.Position.Column + 1)) == "Sword")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("Sword", entity.Direction);
                         return true;
                     }
                     if (LevelGrid.GetGridItemValue(entity.Position.Row, (entity.Position.Column + 1)) == "Bow")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("Bow", entity.Direction);
                         return true;
                     }
                     if (LevelGrid.GetGridItemValue(entity.Position.Row, (entity.Position.Column + 1)) == "Scroll")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("Scroll", entity.Direction);
                         return true;
                     }
                     if (LevelGrid.GetGridItemValue(entity.Position.Row, (entity.Position.Column + 1)) == "Armor")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("Armor", entity.Direction);
                         return true;
                     }
                     if (LevelGrid.GetGridItemValue(entity.Position.Row, (entity.Position.Column + 1)) == "Key")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("Key", entity.Direction);
                         return true;
                     }
                     if (LevelGrid.GetGridItemValue(entity.Position.Row, (entity.Position.Column + 1)) == "Door")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("Door", entity.Direction);
                         return false;
                     }
                     if (LevelGrid.GetGridItemValue(entity.Position.Row, (entity.Position.Column + 1)) == "ExitDoor")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("ExitDoor", entity.Direction);
                         return false;
                     }
@@ -151,51 +171,61 @@ namespace Data.Characters.Movement
                 {
                     if (LevelGrid.GetGridItemValue((entity.Position.Row - 1), entity.Position.Column) == "PotionRed")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("PotionRed", entity.Direction);
                         return true;
                     }
                     if (LevelGrid.GetGridItemValue((entity.Position.Row - 1), entity.Position.Column) == "Quiver")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("Quiver", entity.Direction);
                         return true;
                     }
                     if (LevelGrid.GetGridItemValue((entity.Position.Row - 1), entity.Position.Column) == "Potion")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("Potion", entity.Direction);
                         return true;
                     }
                     if (LevelGrid.GetGridItemValue((entity.Position.Row - 1), entity.Position.Column) == "Sword")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("Sword", entity.Direction);
                         return true;
                     }
                     if (LevelGrid.GetGridItemValue((entity.Position.Row - 1), entity.Position.Column) == "Bow")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("Bow", entity.Direction);
                         return true;
                     }
                     if (LevelGrid.GetGridItemValue((entity.Position.Row - 1), entity.Position.Column) == "Scroll")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("Scroll", entity.Direction);
                         return true;
                     }
                     if (LevelGrid.GetGridItemValue((entity.Position.Row - 1), entity.Position.Column) == "Armor")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("Armor", entity.Direction);
                         return true;
                     }
                     if (LevelGrid.GetGridItemValue((entity.Position.Row - 1), entity.Position.Column) == "Key")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("Key", entity.Direction);
                         return true;
                     }
                     if (LevelGrid.GetGridItemValue((entity.Position.Row - 1), entity.Position.Column) == "Door")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("Door", entity.Direction);
                         return false;
                     }
                     if (LevelGrid.GetGridItemValue((entity.Position.Row - 1), entity.Position.Column) == "ExitDoor")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("ExitDoor", entity.Direction);
                         return false;
                     }
@@ -214,51 +244,61 @@ namespace Data.Characters.Movement
                 {
                     if (LevelGrid.GetGridItemValue((entity.Position.Row + 1), entity.Position.Column) == "PotionRed")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("PotionRed", entity.Direction);
                         return true;
                     }
                     if (LevelGrid.GetGridItemValue((entity.Position.Row + 1), entity.Position.Column) == "Quiver")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("Quiver", entity.Direction);
                         return true;
                     }
                     if (LevelGrid.GetGridItemValue((entity.Position.Row + 1), entity.Position.Column) == "Potion")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("Potion", entity.Direction);
                         return true;
                     }
                     if (LevelGrid.GetGridItemValue((entity.Position.Row + 1), entity.Position.Column) == "Sword")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("Sword", entity.Direction);
                         return true;
                     }
                     if (LevelGrid.GetGridItemValue((entity.Position.Row + 1), entity.Position.Column) == "Bow")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("Bow", entity.Direction);
                         return true;
                     }
                     if (LevelGrid.GetGridItemValue((entity.Position.Row + 1), entity.Position.Column) == "Scroll")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("Scroll", entity.Direction);
                         return true;
                     }
                     if (LevelGrid.GetGridItemValue((entity.Position.Row + 1), entity.Position.Column) == "Armor")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("Armor", entity.Direction);
                         return true;
                     }
                     if (LevelGrid.GetGridItemValue((entity.Position.Row + 1), entity.Position.Column) == "Key")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("Key", entity.Direction);
                         return true;
                     }
                     if (LevelGrid.GetGridItemValue((entity.Position.Row + 1), entity.Position.Column) == "Door")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("Door", entity.Direction);
                         return false;
                     }
                     if (LevelGrid.GetGridItemValue((entity.Position.Row + 1), entity.Position.Column) == "ExitDoor")
                     {
+                        if (entity.IsProjectile) return false;
                         Encounter("ExitDoor", entity.Direction);
                         return false;
                     }
