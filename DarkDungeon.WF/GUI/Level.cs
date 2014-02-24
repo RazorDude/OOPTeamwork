@@ -137,7 +137,7 @@ namespace GUI
                 {
                     x += this.squareWidth;
                     index = int.Parse(levelData.ReadLine());
-                    if ((index == 10) || (index == 11) || (index == 12) || (index == 13))
+                    if ((index == 10) || (index == 11) || (index == 12) || (index == 13) || (index == 14))
                     {
                         Window.LoadCharacter(i, j, index);
                     }
@@ -156,7 +156,7 @@ namespace GUI
                 for (int j = 0; j < levelWidth; j++)
                 {
                     x += this.squareWidth;
-                    if ((savedSlot[index] == 10) || (savedSlot[index] == 11) || (savedSlot[index] == 12) || (savedSlot[index] == 13))
+                    if ((savedSlot[index] == 10) || (savedSlot[index] == 11) || (savedSlot[index] == 12) || (savedSlot[index] == 13) || (savedSlot[index] == 14))
                     {
                         Window.LoadCharacter(i, j, index);
                     }
@@ -203,6 +203,25 @@ namespace GUI
             visualData = new Control[visualDataList.Count];
             for (int i = 0; i < visualDataList.Count; i++) visualData[i] = visualDataList[i];
             return visualData;
+        }
+
+        public int[,] SimplifeidField()
+        {
+            int[,] result = new int[this.LevelHeight, this.LevelWidth];
+            var a = this.levelMap;
+            for (int row = 0; row < this.LevelHeight; row++)
+            {
+                for (int col = 0; col < this.LevelWidth; col++)
+                {
+                    var curElem = this.levelMap[row, col];
+                    if (curElem.ImageIndex == 3 && curElem.ImageIndex == 4 && curElem.ImageIndex == 5 && curElem.ImageIndex == 6)
+                    {
+                        result[row, col] = 1;
+                    }
+                    else result[row, col] = 0; // if it's an empty space
+                }
+            }
+            return result;
         }
     }
 }

@@ -4,7 +4,7 @@
     {
         public Obtacle()
         {
-            this.IsObtacle = true;
+           // this.IsObtacle = true;
         }
     }
 }

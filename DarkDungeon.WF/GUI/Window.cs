@@ -1,7 +1,8 @@
-﻿using System;
-using Data.Player;
-using Data.GridItem;
+﻿using Data.Characters.Enemies;
 using Data.Characters.Movement;
+using Data.GridItem;
+using Data.Player;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -22,6 +23,7 @@ namespace GUI
         LoadMenuScreen LoadMenu;
         CharacterSelectMenuScreen CharacterSelectMenu;
         Player player;
+        Enemy enemy;
         Level level;
         public static ExecuteDelegate Execute;
         public static LoadCharacterDelegate LoadCharacter;
@@ -94,9 +96,10 @@ namespace GUI
         {
             this.Clear();
             this.BackColor = Color.Black;
+            this.enemy = new Enemy();
             level = new Level();
             level.LoadLevel("Data\\Levels\\level1.dat", this.imageList);
-            this.currentState = "Ingame";
+            this.currentState = "Ingame";            
             this.Controls.AddRange(level.GetControlData());
         }
         void ExecuteSaveGameMenu()
@@ -231,26 +234,43 @@ namespace GUI
                 this.Controls.Add(this.level.GetVisualData(column, row));
             }
         }
+
+        protected void MoveEnemy()
+        {
+            int[,] map = this.level.SimplifeidField(); 
+            MazeSolver playGround = new MazeSolver(map);
+            this.enemy.FindDirectionAndMove(playGround, this.player.Character);
+        }
+
         void OnGridItemChange(int row, int column, int imageIndex)
         {
             this.Controls.Remove(this.level.GetVisualData(column, row));
             this.level.SetSquareImageIndex(column, row, imageIndex, this.imageList.Images[imageIndex], true);
-            this.Controls.Add(this.level.GetVisualData(column,row));
+            this.Controls.Add(this.level.GetVisualData(column, row));
         }
         void CharacterLoad(int row, int column, int imageIndex)
         {
-            this.player.Character.Position.Row = row;
-            this.player.Character.Position.Column = column;
-            switch (imageIndex)
+            if (imageIndex == 14)
             {
-                case 10: this.player.Character.Direction = 1;
-                    break;
-                case 11: this.player.Character.Direction = 2;
-                    break;
-                case 12: this.player.Character.Direction = 3;
-                    break;
-                case 13: this.player.Character.Direction = 4;
-                    break;
+                this.enemy.Position.Row = row;
+                this.enemy.Position.Column = column;
+                this.enemy.Direction = 1;
+            }
+            else
+            {
+                this.player.Character.Position.Row = row;
+                this.player.Character.Position.Column = column;
+                switch (imageIndex)
+                {
+                    case 10: this.player.Character.Direction = 1;
+                        break;
+                    case 11: this.player.Character.Direction = 2;
+                        break;
+                    case 12: this.player.Character.Direction = 3;
+                        break;
+                    case 13: this.player.Character.Direction = 4;
+                        break;
+                }
             }
         }
         bool IsIngame()
@@ -261,6 +281,7 @@ namespace GUI
         {
             if (this.IsIngame())
             {
+                this.MoveEnemy();
                 switch (keyData)
                 {
                     case Keys.Escape: Execute("Pause menu");
@@ -277,7 +298,7 @@ namespace GUI
                     case Keys.Down: if (this.player.Character.Direction == 4) Movement.Move(this.player.Character);
                         else Movement.ChangeDirection(this.player.Character, 4);
                         return true;
-                }
+                }               
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
@@ -297,7 +318,9 @@ namespace GUI
             this.MainMenu = new MainMenuScreen();
             this.PauseMenu = new PauseMenuScreen();
             this.CharacterSelectMenu = new CharacterSelectMenuScreen();
+            
             Execute("Main menu");
+
         }
     }
 }
