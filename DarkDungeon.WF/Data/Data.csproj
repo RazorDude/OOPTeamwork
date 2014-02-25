@@ -49,6 +49,7 @@
     <Compile Include="Characters\PlayerCharacters\PlayerCharacter.cs" />
     <Compile Include="GridViewItem\GridViewItem.cs" />
     <Compile Include="GridViewItem\LevelGrid.cs" />
+    <Compile Include="Images.cs" />
     <Compile Include="Items\ItemsCollections\Inventories\Equipment.cs" />
     <Compile Include="Items\DefenceItems\DefenceItem.cs" />
     <Compile Include="Items\DefenceItems\IDefensible.cs" />

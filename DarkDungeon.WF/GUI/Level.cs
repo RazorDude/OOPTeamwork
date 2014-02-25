@@ -90,7 +90,8 @@ namespace GUI
         }
 
         int squareWidth = 40, levelWidth = 31, levelHeight = 19, frameDimension = 20,
-            horizontalFrameImageIndex = 1, verticalFrameImageIndex = 2, keysOnMap = 0;
+            horizontalFrameImageIndex = (int)Images.HorizontalFrame, verticalFrameImageIndex = (int)Images.VerticalFrame, keysOnMap = 0;
+
         string playerName, characterName, charaterClass;
         PictureBox topFrame, leftFrame, rightFrame, bottomFrame;
         HealthBar healthBar;
@@ -168,33 +169,34 @@ namespace GUI
                 {
                     x += this.squareWidth;
                     index = int.Parse(levelData.ReadLine());
-                    if ((index == 10) || (index == 11) || (index == 12) || (index == 13) || (index == 14))
+                    if ((index == (int)Images.CharacterLeft) || (index == (int)Images.CharacterRight) || (index == (int)Images.CharacterUp) ||
+                        (index == (int)Images.CharacterDown) || (index == (int)Images.Demon))
                     {
                         Window.LoadCharacter(i, j, index);
                     }
-                    if (index == 15)
+                    if (index == (int)Images.Sword)
                     {
                         switch (charClass)
                         {
                             case "Marksman":
-                                index = 16;
+                                index = (int)Images.Bow;
                                 break;
                             case "Mage":
-                                index = 27;
+                                index = (int)Images.Scroll;
                                 break;
                         }
                     }
-                    else if (index == 19)
+                    else if (index == (int)Images.Potion)
                     {
                         switch (charClass)
                         {
-                            case "Knight": index = 26;
+                            case "Knight": index = (int)Images.PotionRed;
                                 break;
-                            case "Marksman": index = 18;
+                            case "Marksman": index = (int)Images.Quiver;
                                 break;
                         }
                     }
-                    else if (index == 8) this.keysOnMap++;
+                    else if (index == (int)Images.Key) this.keysOnMap++;
                     levelMap[i, j] = new Square(index, imageList.Images[index], x, y, i, j, this.squareWidth);
                 }
                 y += this.squareWidth;
@@ -214,7 +216,8 @@ namespace GUI
                 for (int j = 0; j < levelWidth; j++)
                 {
                     x += this.squareWidth;
-                    if ((savedSlot[index] == 10) || (savedSlot[index] == 11) || (savedSlot[index] == 12) || (savedSlot[index] == 13) || (savedSlot[index] == 14))
+                    if ((savedSlot[index] == (int)Images.CharacterLeft) || (savedSlot[index] == (int)Images.CharacterRight) ||
+                        (savedSlot[index] == (int)Images.CharacterUp) || (savedSlot[index] == (int)Images.CharacterDown) || (savedSlot[index] == (int)Images.Demon))
                     {
                         Window.LoadCharacter(i, j, index);
                     }
@@ -273,7 +276,8 @@ namespace GUI
                 for (int col = 0; col < this.LevelWidth; col++)
                 {
                     var curElem = this.levelMap[row, col];
-                    if (curElem.ImageIndex == 9 || curElem.ImageIndex == 10 || curElem.ImageIndex == 11 || curElem.ImageIndex == 12 || curElem.ImageIndex == 13 || curElem.ImageIndex == 14)
+                    if (curElem.ImageIndex == (int)Images.Empty || curElem.ImageIndex == (int)Images.CharacterLeft || curElem.ImageIndex == (int)Images.CharacterRight ||
+                        curElem.ImageIndex == (int)Images.CharacterUp || curElem.ImageIndex == (int)Images.CharacterDown || curElem.ImageIndex == (int)Images.Demon)
                     {
                         result[row, col] = 0; // if it's an empty space
                     }

@@ -225,7 +225,7 @@ namespace GUI
 
             if (direction == (int)Direction.Left)
             {
-                ChangeImage(row, column, 10);                
+                ChangeImage(row, column, 10);
             }
             else if (direction == (int)Direction.Right)
             {
@@ -277,32 +277,14 @@ namespace GUI
                 case "Door": if (this.player.Character.Inventory.Items.Items.Count > 0)
                     {
                         this.player.Character.Inventory.Items.RemoveItemByIndex(0);
-                        switch (direction)
-                        {
-                            case 1: this.level.SetSquareImageIndex((this.player.Character.Position.Column - 1), this.player.Character.Position.Row, 9, this.imageList.Images[9]);
-                                break;
-                            case 2: this.level.SetSquareImageIndex((this.player.Character.Position.Column + 1), this.player.Character.Position.Row, 9, this.imageList.Images[9]);
-                                break;
-                            case 3: this.level.SetSquareImageIndex(this.player.Character.Position.Column, (this.player.Character.Position.Row - 1), 9, this.imageList.Images[9]);
-                                break;
-                            case 4: this.level.SetSquareImageIndex(this.player.Character.Position.Column, (this.player.Character.Position.Row + 1), 9, this.imageList.Images[9]);
-                                break;
-                        }
+
+                        SwitchDirection(direction);
                     }
                     break;
                 case "ExitDoor": if (this.level.KeysOnMap == 0)
                     {
-                        switch (direction)
-                        {
-                            case 1: this.level.SetSquareImageIndex((this.player.Character.Position.Column - 1), this.player.Character.Position.Row, 9, this.imageList.Images[9]);
-                                break;
-                            case 2: this.level.SetSquareImageIndex((this.player.Character.Position.Column + 1), this.player.Character.Position.Row, 9, this.imageList.Images[9]);
-                                break;
-                            case 3: this.level.SetSquareImageIndex(this.player.Character.Position.Column, (this.player.Character.Position.Row - 1), 9, this.imageList.Images[9]);
-                                break;
-                            case 4: this.level.SetSquareImageIndex(this.player.Character.Position.Column, (this.player.Character.Position.Row + 1), 9, this.imageList.Images[9]);
-                                break;
-                        }
+                        SwitchDirection(direction);
+                       
                         this.Clear();
                         this.BackColor = Color.Black;
                         level = new Level();
@@ -314,9 +296,28 @@ namespace GUI
             }
         }
 
+        private void SwitchDirection(int direction)
+        {
+            switch (direction)
+            {
+                case (int)Direction.Left:
+                    this.level.SetSquareImageIndex((this.player.Character.Position.Column - 1), this.player.Character.Position.Row, (int)Images.Empty, this.imageList.Images[(int)Images.Empty]);
+                    break;
+                case (int)Direction.Right:
+                    this.level.SetSquareImageIndex((this.player.Character.Position.Column + 1), this.player.Character.Position.Row, (int)Images.Empty, this.imageList.Images[(int)Images.Empty]);
+                    break;
+                case (int)Direction.Up:
+                    this.level.SetSquareImageIndex(this.player.Character.Position.Column, (this.player.Character.Position.Row - 1), (int)Images.Empty, this.imageList.Images[(int)Images.Empty]);
+                    break;
+                case (int)Direction.Down:
+                    this.level.SetSquareImageIndex(this.player.Character.Position.Column, (this.player.Character.Position.Row + 1), (int)Images.Empty, this.imageList.Images[(int)Images.Empty]);
+                    break;
+            }
+        }
+
         void CharacterLoad(int row, int column, int imageIndex)
         {
-            if (imageIndex == 14)
+            if (imageIndex == (int)Images.Demon)
             {
                 this.enemy.Position.Row = row;
                 this.enemy.Position.Column = column;
@@ -328,13 +329,13 @@ namespace GUI
                 this.player.Character.Position.Column = column;
                 switch (imageIndex)
                 {
-                    case 10: this.player.Character.Direction = (int)Direction.Left;
+                    case (int)Images.CharacterLeft: this.player.Character.Direction = (int)Direction.Left;
                         break;
-                    case 11: this.player.Character.Direction = (int)Direction.Right;
+                    case (int)Images.CharacterRight: this.player.Character.Direction = (int)Direction.Right;
                         break;
-                    case 12: this.player.Character.Direction = (int)Direction.Up;
+                    case (int)Images.CharacterUp: this.player.Character.Direction = (int)Direction.Up;
                         break;
-                    case 13: this.player.Character.Direction = (int)Direction.Down;
+                    case (int)Images.CharacterDown: this.player.Character.Direction = (int)Direction.Down;
                         break;
                 }
             }
