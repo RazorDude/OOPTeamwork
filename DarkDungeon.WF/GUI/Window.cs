@@ -220,31 +220,32 @@ namespace GUI
         }
         void OnPlayerDirectionChange(int direction)
         {
-            int row = this.player.Character.Position.Row, column = this.player.Character.Position.Column;
-            if (direction == 1)
+            int row = this.player.Character.Position.Row;
+            int column = this.player.Character.Position.Column;
+
+            if (direction == (int)Direction.Left)
             {
-                this.Controls.Remove(this.level.GetVisualData(column, row));
-                this.level.SetSquareImageIndex(column, row, 10, this.imageList.Images[10]);
-                this.Controls.Add(this.level.GetVisualData(column, row));
+                ChangeImage(row, column, 10);                
             }
-            else if (direction == 2)
+            else if (direction == (int)Direction.Right)
             {
-                this.Controls.Remove(this.level.GetVisualData(column, row));
-                this.level.SetSquareImageIndex(column, row, 11, this.imageList.Images[11]);
-                this.Controls.Add(this.level.GetVisualData(column, row));
+                ChangeImage(row, column, 11);
             }
-            else if (direction == 3)
+            else if (direction == (int)Direction.Up)
             {
-                this.Controls.Remove(this.level.GetVisualData(column, row));
-                this.level.SetSquareImageIndex(column, row, 12, this.imageList.Images[12]);
-                this.Controls.Add(this.level.GetVisualData(column, row));
+                ChangeImage(row, column, 12);
             }
-            else if (direction == 4)
+            else if (direction == (int)Direction.Down)
             {
-                this.Controls.Remove(this.level.GetVisualData(column, row));
-                this.level.SetSquareImageIndex(column, row, 13, this.imageList.Images[13]);
-                this.Controls.Add(this.level.GetVisualData(column, row));
+                ChangeImage(row, column, 13);
             }
+        }
+
+        private void ChangeImage(int row, int column, int imageIndex)
+        {
+            this.Controls.Remove(this.level.GetVisualData(column, row));
+            this.level.SetSquareImageIndex(column, row, imageIndex, this.imageList.Images[imageIndex]);
+            this.Controls.Add(this.level.GetVisualData(column, row));
         }
 
         protected void MoveEnemy()
@@ -312,13 +313,14 @@ namespace GUI
                     break;
             }
         }
+
         void CharacterLoad(int row, int column, int imageIndex)
         {
             if (imageIndex == 14)
             {
                 this.enemy.Position.Row = row;
                 this.enemy.Position.Column = column;
-                this.enemy.Direction = 1;
+                this.enemy.Direction = (int)Direction.Left;
             }
             else
             {
@@ -326,21 +328,23 @@ namespace GUI
                 this.player.Character.Position.Column = column;
                 switch (imageIndex)
                 {
-                    case 10: this.player.Character.Direction = 1;
+                    case 10: this.player.Character.Direction = (int)Direction.Left;
                         break;
-                    case 11: this.player.Character.Direction = 2;
+                    case 11: this.player.Character.Direction = (int)Direction.Right;
                         break;
-                    case 12: this.player.Character.Direction = 3;
+                    case 12: this.player.Character.Direction = (int)Direction.Up;
                         break;
-                    case 13: this.player.Character.Direction = 4;
+                    case 13: this.player.Character.Direction = (int)Direction.Down;
                         break;
                 }
             }
         }
+
         bool IsIngame()
         {
             return (this.currentState == "Ingame");
         }
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (this.IsIngame())
@@ -351,28 +355,28 @@ namespace GUI
                     case Keys.Escape: Execute("Pause menu");
                         return true;
                     case Keys.Left:
-                        if (this.player.Character.Direction == 1 && Movement.IsMoveAvailable(this.player.Character))
+                        if (this.player.Character.Direction == (int)Direction.Left && Movement.IsMoveAvailable(this.player.Character))
                             Movement.Move(this.player.Character);
                         else
-                            Movement.ChangeDirection(this.player.Character, 1);
+                            Movement.ChangeDirection(this.player.Character, (int)Direction.Left);
                         return true;
                     case Keys.Right:
-                        if (this.player.Character.Direction == 2 && Movement.IsMoveAvailable(this.player.Character))
+                        if (this.player.Character.Direction == (int)Direction.Right && Movement.IsMoveAvailable(this.player.Character))
                             Movement.Move(this.player.Character);
                         else
-                            Movement.ChangeDirection(this.player.Character, 2);
+                            Movement.ChangeDirection(this.player.Character, (int)Direction.Right);
                         return true;
                     case Keys.Up:
-                        if (this.player.Character.Direction == 3 && Movement.IsMoveAvailable(this.player.Character))
+                        if (this.player.Character.Direction == (int)Direction.Up && Movement.IsMoveAvailable(this.player.Character))
                             Movement.Move(this.player.Character);
                         else
-                            Movement.ChangeDirection(this.player.Character, 3);
+                            Movement.ChangeDirection(this.player.Character, (int)Direction.Up);
                         return true;
                     case Keys.Down:
-                        if (this.player.Character.Direction == 4 && Movement.IsMoveAvailable(this.player.Character))
+                        if (this.player.Character.Direction == (int)Direction.Down && Movement.IsMoveAvailable(this.player.Character))
                             Movement.Move(this.player.Character);
                         else
-                            Movement.ChangeDirection(this.player.Character, 4);
+                            Movement.ChangeDirection(this.player.Character, (int)Direction.Down);
                         return true;
                 }
             }
