@@ -264,7 +264,7 @@ namespace Data.Characters.Movement
                     }
                 }
             }
-            return true; 
+            return true;
         }
         public static bool CollisionDetect(Character entity, PlayerCharacter hero)
         {
@@ -277,47 +277,36 @@ namespace Data.Characters.Movement
 
         public static void Move(Character entity)
         {
-            int direction = entity.Direction, tempImageIndex = 0;
+            int row = entity.Position.Row;
+            int col = entity.Position.Column;
+            int direction = entity.Direction;
+
             if (direction == (int)Direction.Up)
             {
-                if (IsMoveAvailable(entity))
-                {
-                    tempImageIndex = LevelGrid.GetGridItemImageIndex(entity.Position.Row, entity.Position.Column);
-                    LevelGrid.SetGridItemValue(entity.Position.Row, entity.Position.Column, 9);
-                    LevelGrid.SetGridItemValue((entity.Position.Row - 1), entity.Position.Column, tempImageIndex);
-                    entity.Position.Row--;
-                }
+                ChangePosition(entity, row - 1, col);
             }
             if (direction == (int)Direction.Down)
             {
-                if (IsMoveAvailable(entity))
-                {
-                    tempImageIndex = LevelGrid.GetGridItemImageIndex(entity.Position.Row, entity.Position.Column);
-                    LevelGrid.SetGridItemValue(entity.Position.Row, entity.Position.Column, 9);
-                    LevelGrid.SetGridItemValue((entity.Position.Row + 1), entity.Position.Column, tempImageIndex);
-                    entity.Position.Row++;
-                }
+                ChangePosition(entity, row + 1, col);
             }
             if (direction == (int)Direction.Left)
             {
-                if (IsMoveAvailable(entity))
-                {
-                    tempImageIndex = LevelGrid.GetGridItemImageIndex(entity.Position.Row, entity.Position.Column);
-                    LevelGrid.SetGridItemValue(entity.Position.Row, entity.Position.Column, 9);
-                    LevelGrid.SetGridItemValue(entity.Position.Row, (entity.Position.Column - 1), tempImageIndex);
-                    entity.Position.Column--;
-                }
+                ChangePosition(entity, row, col - 1);
             }
             if (direction == (int)Direction.Right)
             {
-                if (IsMoveAvailable(entity))
-                {
-                    tempImageIndex = LevelGrid.GetGridItemImageIndex(entity.Position.Row, entity.Position.Column);
-                    LevelGrid.SetGridItemValue(entity.Position.Row, entity.Position.Column, 9);
-                    LevelGrid.SetGridItemValue(entity.Position.Row, (entity.Position.Column + 1), tempImageIndex);
-                    entity.Position.Column++;
-                }
+                ChangePosition(entity, row, col + 1);
             }
         }
+
+        private static void ChangePosition(Character entity, int newRow, int newCol)
+        {
+            int index = LevelGrid.GetGridItemImageIndex(entity.Position.Row, entity.Position.Column);
+            LevelGrid.SetGridItemValue(entity.Position.Row, entity.Position.Column, 9); // set empty image
+            LevelGrid.SetGridItemValue(newRow, newCol, index); // set the image on the new position
+            entity.Position.Row = newRow; // set a new value or the old one
+            entity.Position.Column = newCol; // set a new value or the old one
+        }
+
     }
 }

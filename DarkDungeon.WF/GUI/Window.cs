@@ -350,17 +350,29 @@ namespace GUI
                 {
                     case Keys.Escape: Execute("Pause menu");
                         return true;
-                    case Keys.Left: if (this.player.Character.Direction == 1) Movement.Move(this.player.Character);
-                        else Movement.ChangeDirection(this.player.Character, 1);
+                    case Keys.Left:
+                        if (this.player.Character.Direction == 1 && Movement.IsMoveAvailable(this.player.Character))
+                            Movement.Move(this.player.Character);
+                        else
+                            Movement.ChangeDirection(this.player.Character, 1);
                         return true;
-                    case Keys.Right: if (this.player.Character.Direction == 2) Movement.Move(this.player.Character);
-                        else Movement.ChangeDirection(this.player.Character, 2);
+                    case Keys.Right:
+                        if (this.player.Character.Direction == 2 && Movement.IsMoveAvailable(this.player.Character))
+                            Movement.Move(this.player.Character);
+                        else
+                            Movement.ChangeDirection(this.player.Character, 2);
                         return true;
-                    case Keys.Up: if (this.player.Character.Direction == 3) Movement.Move(this.player.Character);
-                        else Movement.ChangeDirection(this.player.Character, 3);
+                    case Keys.Up:
+                        if (this.player.Character.Direction == 3 && Movement.IsMoveAvailable(this.player.Character))
+                            Movement.Move(this.player.Character);
+                        else
+                            Movement.ChangeDirection(this.player.Character, 3);
                         return true;
-                    case Keys.Down: if (this.player.Character.Direction == 4) Movement.Move(this.player.Character);
-                        else Movement.ChangeDirection(this.player.Character, 4);
+                    case Keys.Down:
+                        if (this.player.Character.Direction == 4 && Movement.IsMoveAvailable(this.player.Character))
+                            Movement.Move(this.player.Character);
+                        else
+                            Movement.ChangeDirection(this.player.Character, 4);
                         return true;
                 }
             }

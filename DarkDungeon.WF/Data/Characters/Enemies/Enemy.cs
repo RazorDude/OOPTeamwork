@@ -20,11 +20,22 @@ namespace Data.Characters.Enemies
         {
         }
 
+        protected bool CanMove { get; set; }
+
         public void FindDirectionAndMove(MovementFolder.MazeSolver maze, Data.Characters.PlayerCharacters.PlayerCharacter hero)
         {
-            int nextDirection = maze.FindPath(this.Position.Row, this.Position.Column, hero.Position.Row, hero.Position.Column);
-            MovementFolder.Movement.ChangeDirection(this, nextDirection);
-            MovementFolder.Movement.Move(this);
+            if (this.CanMove)
+            {
+                int nextDirection = maze.FindPath(this.Position.Row, this.Position.Column, hero.Position.Row, hero.Position.Column);
+                MovementFolder.Movement.ChangeDirection(this, nextDirection);
+                MovementFolder.Movement.Move(this);
+                this.CanMove = false;
+            }
+            else
+            {
+                this.CanMove = true;
+            }
+
             if (MovementFolder.Movement.CollisionDetect(this, hero))
             {
                 // TO DO Battle

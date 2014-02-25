@@ -267,17 +267,17 @@ namespace GUI
         public int[,] SimplifeidField()
         {
             int[,] result = new int[this.LevelHeight, this.LevelWidth];
-           
+
             for (int row = 0; row < this.LevelHeight; row++)
             {
                 for (int col = 0; col < this.LevelWidth; col++)
                 {
                     var curElem = this.levelMap[row, col];
-                    if (curElem.ImageIndex == 3 && curElem.ImageIndex == 4 && curElem.ImageIndex == 5 && curElem.ImageIndex == 6)
+                    if (curElem.ImageIndex == 9 || curElem.ImageIndex == 10 || curElem.ImageIndex == 11 || curElem.ImageIndex == 12 || curElem.ImageIndex == 13 || curElem.ImageIndex == 14)
                     {
-                        result[row, col] = 1;
+                        result[row, col] = 0; // if it's an empty space
                     }
-                    else result[row, col] = 0; // if it's an empty space
+                    else result[row, col] = 1;
                 }
             }
             return result;
