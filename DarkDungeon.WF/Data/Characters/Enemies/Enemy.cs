@@ -24,6 +24,19 @@ namespace Data.Characters.Enemies
         {
         }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        public void FindDirectionAndMove(MovementFolder.MazeSolver maze)
+        {
+            // temp value. To be updated with the correct object
+            var hero = new Data.Characters.PlayerCharacters.PlayerCharacter("Hero");
+
+            int nextDirection = maze.FindPath(this.Position.Row, this.Position.Column, hero.Position.Row, hero.Position.Column);
+            MovementFolder.Movement.ChangeDirection(this, nextDirection);
+            MovementFolder.Movement.Move(this);
+=======
+>>>>>>> a62d0de908465d7ff0571e69780bef66808a2228
         protected bool CanMove { get; set; }
 
         public void FindDirectionAndMove(MovementFolder.MazeSolver maze, Data.Characters.PlayerCharacters.PlayerCharacter hero)
@@ -49,6 +62,10 @@ namespace Data.Characters.Enemies
                 this.CanMove = true;
             }
 
+<<<<<<< HEAD
+=======
+>>>>>>> 6b583b1c258696e11e40eb4d464f95c58c5919f1
+>>>>>>> a62d0de908465d7ff0571e69780bef66808a2228
             if (MovementFolder.Movement.CollisionDetect(this, hero))
             {
                 int takenDamageDemon = this.TakeDamage(this.DealDamage());  // decrease enemy health
