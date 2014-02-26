@@ -50,30 +50,6 @@
     <Compile Include="Exceptions\GameEndException.cs" />
     <Compile Include="GridViewItem\GridViewItem.cs" />
     <Compile Include="GridViewItem\LevelGrid.cs" />
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-    <Compile Include="GridViewItem\Items\ItemsCollections\Inventories\Equipment.cs" />
-    <Compile Include="GridViewItem\Items\DefenceItems\DefenceItem.cs" />
-    <Compile Include="GridViewItem\Items\DefenceItems\IDefensible.cs" />
-    <Compile Include="GridViewItem\Items\ItemsCollections\Inventories\Inventory.cs" />
-    <Compile Include="GridViewItem\Items\Item.cs" />
-    <Compile Include="GridViewItem\Items\ItemsCollections\ItemsCollection.cs" />
-    <Compile Include="GridViewItem\Items\IWearable.cs" />
-    <Compile Include="GridViewItem\Items\IWeightable.cs" />
-    <Compile Include="GridViewItem\Items\Key.cs" />
-    <Compile Include="GridViewItem\Items\Money\ITransactable.cs" />
-    <Compile Include="GridViewItem\Items\Money\Money.cs" />
-    <Compile Include="GridViewItem\Items\Potions\HealthPotion.cs" />
-    <Compile Include="GridViewItem\Items\Potions\IConsumable.cs" />
-    <Compile Include="GridViewItem\Items\Potions\ManaPotion.cs" />
-    <Compile Include="GridViewItem\Items\Potions\Potion.cs" />
-    <Compile Include="GridViewItem\Items\Potions\PotionsCollection.cs" />
-    <Compile Include="GridViewItem\Items\Potions\StrengthPotion.cs" />
-    <Compile Include="GridViewItem\Items\Weapons\IDamageDealable.cs" />
-    <Compile Include="GridViewItem\Items\Weapons\Weapon.cs" />
-=======
->>>>>>> a62d0de908465d7ff0571e69780bef66808a2228
     <Compile Include="Images.cs" />
     <Compile Include="Items\ItemsCollections\Inventories\Equipment.cs" />
     <Compile Include="Items\DefenceItems\DefenceItem.cs" />
@@ -94,10 +70,6 @@
     <Compile Include="Items\Potions\StrengthPotion.cs" />
     <Compile Include="Items\Weapons\IDamageDealable.cs" />
     <Compile Include="Items\Weapons\Weapon.cs" />
-<<<<<<< HEAD
-=======
->>>>>>> 6b583b1c258696e11e40eb4d464f95c58c5919f1
->>>>>>> a62d0de908465d7ff0571e69780bef66808a2228
     <Compile Include="Player\Player.cs" />
     <Compile Include="GridViewItem\Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

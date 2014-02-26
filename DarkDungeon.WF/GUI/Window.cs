@@ -1,29 +1,11 @@
-<<<<<<< HEAD
 ﻿using Data;
 using Data.Characters.Enemies;
-=======
-<<<<<<< HEAD
-﻿using Data;
-using Data.Player;
-using Data.GridItem;
-using Data.Characters.Movement;
-using Data.Items;
-using Data.Items.Potions;
-=======
-﻿using Data.Characters.Enemies;
->>>>>>> a62d0de908465d7ff0571e69780bef66808a2228
 using Data.Characters.Movement;
 using Data.Exceptions;
 using Data.GridItem;
 using Data.Items;
 using Data.Items.Potions;
-<<<<<<< HEAD
 using Data.Player;
-=======
-using Data.GridItem;
-using Data.Player;
->>>>>>> 6b583b1c258696e11e40eb4d464f95c58c5919f1
->>>>>>> a62d0de908465d7ff0571e69780bef66808a2228
 using System;
 using System.Drawing;
 using System.Threading;
@@ -275,10 +257,6 @@ namespace GUI
                 ChangeImage(row, column, 13);
             }
         }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> a62d0de908465d7ff0571e69780bef66808a2228
         void OnGridItemChange(int row, int column, int imageIndex)
         {
             int[] a = new int[3];
@@ -292,7 +270,6 @@ namespace GUI
                 return;
             }
             this.UpdateOnGridItemChange(a);
-<<<<<<< HEAD
         }
         void UpdateOnGridItemChange(int[] data)
         {
@@ -346,14 +323,8 @@ namespace GUI
         }
         private void ChangeImage(int row, int column, int imageIndex, bool noCallback)
         {
-=======
-=======
-
-        private void ChangeImage(int row, int column, int imageIndex)
-        {
->>>>>>> a62d0de908465d7ff0571e69780bef66808a2228
             this.Controls.Remove(this.level.GetVisualData(column, row));
-            this.level.SetSquareImageIndex(column, row, imageIndex, this.imageList.Images[imageIndex]);
+            this.level.SetSquareImageIndex(column, row, imageIndex, this.imageList.Images[imageIndex], true);
             this.Controls.Add(this.level.GetVisualData(column, row));
         }
 
@@ -362,22 +333,6 @@ namespace GUI
             int[,] map = this.level.SimplifeidField();
             MazeSolver playGround = new MazeSolver(map);
             this.enemy.FindDirectionAndMove(playGround, this.player.Character);
-<<<<<<< HEAD
-=======
->>>>>>> 6b583b1c258696e11e40eb4d464f95c58c5919f1
-        }
-        void UpdateOnGridItemChange(int[] data)
-        {
-<<<<<<< HEAD
-            this.Controls.Remove(this.level.GetVisualData(data[1], data[0]));
-            this.level.SetSquareImageIndex(data[1], data[0], data[2], this.imageList.Images[data[2]], true);
-            this.Controls.Add(this.level.GetVisualData(data[1], data[0]));
-=======
-            this.Controls.Remove(this.level.GetVisualData(column, row));
-            this.level.SetSquareImageIndex(column, row, imageIndex, this.imageList.Images[imageIndex], true);
-            this.Controls.Add(this.level.GetVisualData(column, row));
->>>>>>> 6b583b1c258696e11e40eb4d464f95c58c5919f1
->>>>>>> a62d0de908465d7ff0571e69780bef66808a2228
         }
         void OnEncounter(string param, int direction)
         {
@@ -442,23 +397,6 @@ namespace GUI
 
         void CharacterLoad(int row, int column, int imageIndex)
         {
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-            this.player.Character.Position.Row = row;
-            this.player.Character.Position.Column = column;
-            switch (imageIndex)
-            {
-                case 10: this.player.Character.Direction = 1;
-                    break;
-                case 11: this.player.Character.Direction = 2;
-                    break;
-                case 12: this.player.Character.Direction = 3;
-                    break;
-                case 13: this.player.Character.Direction = 4;
-                    break;
-=======
->>>>>>> a62d0de908465d7ff0571e69780bef66808a2228
             if (imageIndex == (int)Images.Demon)
             {
                 this.enemy.Position.Row = row;
@@ -480,10 +418,6 @@ namespace GUI
                     case (int)Images.CharacterDown: this.player.Character.Direction = (int)Direction.Down;
                         break;
                 }
-<<<<<<< HEAD
-=======
->>>>>>> 6b583b1c258696e11e40eb4d464f95c58c5919f1
->>>>>>> a62d0de908465d7ff0571e69780bef66808a2228
             }
         }
 
@@ -516,7 +450,7 @@ namespace GUI
                 else
                 {
                     this.UpdateStatusBox("Score", (this.level.GetStatusBoxData("Score") + 100));
-                    LevelGrid.SetGridItemValue(this.enemy.Position.Row, this.enemy.Position.Column, 9);
+                    LevelGrid.SetGridItemValue(this.enemy.Position.Row, this.enemy.Position.Column, (int)Images.Empty);
                 }
                 switch (keyData)
                 {
@@ -549,7 +483,6 @@ namespace GUI
                         else
                             Movement.ChangeDirection(this.player.Character, (int)Direction.Up);
                         return true;
-<<<<<<< HEAD
                     case Keys.Down:
                         if (this.player.Character.Direction == (int)Direction.Down && Movement.IsMoveAvailable(this.player.Character))
                         {
@@ -558,11 +491,6 @@ namespace GUI
                         }
                         else
                             Movement.ChangeDirection(this.player.Character, (int)Direction.Down);
-=======
-<<<<<<< HEAD
-                    case Keys.Down: if (this.player.Character.Direction == 4) Movement.Move(this.player.Character);
-                        else Movement.ChangeDirection(this.player.Character, 4);
->>>>>>> a62d0de908465d7ff0571e69780bef66808a2228
                         return true;
                     case Keys.P: switch (this.player.Character.CharacterClass)
                         {
@@ -589,7 +517,7 @@ namespace GUI
                         {
                             switch (this.player.Character.Direction)
                             {
-                                case 1: if (this.player.Character.Position.Column > 0)
+                                case (int)Direction.Left: if (this.player.Character.Position.Column > 0)
                                     {
                                         if (this.level.GetSquareImageIndex((this.player.Character.Position.Column - 1), this.player.Character.Position.Row) == (int)Images.Demon)
                                         {
@@ -599,7 +527,7 @@ namespace GUI
                                         }
                                     }
                                     break;
-                                case 2: if (this.player.Character.Position.Column < 30)
+                                case (int)Direction.Right: if (this.player.Character.Position.Column < 30)
                                     {
                                         if (this.level.GetSquareImageIndex((this.player.Character.Position.Column + 1), this.player.Character.Position.Row) == (int)Images.Demon)
                                         {
@@ -609,7 +537,7 @@ namespace GUI
                                         }
                                     }
                                     break;
-                                case 3: if (this.player.Character.Position.Row > 0)
+                                case (int)Direction.Up: if (this.player.Character.Position.Row > 0)
                                     {
                                         if (this.level.GetSquareImageIndex(this.player.Character.Position.Column, (this.player.Character.Position.Row - 1)) == (int)Images.Demon)
                                         {
@@ -619,7 +547,7 @@ namespace GUI
                                         }
                                     }
                                     break;
-                                case 4: if (this.player.Character.Position.Row < 30)
+                                case (int)Direction.Down: if (this.player.Character.Position.Row < 30)
                                     {
                                         if (this.level.GetSquareImageIndex(this.player.Character.Position.Column, (this.player.Character.Position.Row + 1)) == (int)Images.Demon)
                                         {
@@ -637,17 +565,7 @@ namespace GUI
                             {
                                 this.player.Character.Equipment.Arrows--;
                                 this.UpdateStatusBox("Ammo", (this.level.GetStatusBoxData("Ammo") - 1));
-                                switch (this.player.Character.Direction)
-                                {
-                                    case 1: this.Shot = new ShotLogic(this.player.Character.Position.Row, (this.player.Character.Position.Column - 1), this.player.Character.Direction, this.player.Character.CharacterClass);
-                                        break;
-                                    case 2: this.Shot = new ShotLogic(this.player.Character.Position.Row, (this.player.Character.Position.Column + 1), this.player.Character.Direction, this.player.Character.CharacterClass);
-                                        break;
-                                    case 3: this.Shot = new ShotLogic((this.player.Character.Position.Row - 1), this.player.Character.Position.Column, this.player.Character.Direction, this.player.Character.CharacterClass);
-                                        break;
-                                    case 4: this.Shot = new ShotLogic((this.player.Character.Position.Row + 1), this.player.Character.Position.Column, this.player.Character.Direction, this.player.Character.CharacterClass);
-                                        break;
-                                }
+                                DoShoot();
                             }
                             Thread ShotThread = new Thread(new ThreadStart(this.Shot.Shoot));
                             ShotThread.Start();
@@ -658,36 +576,30 @@ namespace GUI
                             {
                                 this.player.Character.Mana -= 20;
                                 this.UpdateStatusBox("Ammo", (this.level.GetStatusBoxData("Ammo") - 20));
-                                switch (this.player.Character.Direction)
-                                {
-                                    case 1: this.Shot = new ShotLogic(this.player.Character.Position.Row, (this.player.Character.Position.Column - 1), this.player.Character.Direction, this.player.Character.CharacterClass);
-                                        break;
-                                    case 2: this.Shot = new ShotLogic(this.player.Character.Position.Row, (this.player.Character.Position.Column + 1), this.player.Character.Direction, this.player.Character.CharacterClass);
-                                        break;
-                                    case 3: this.Shot = new ShotLogic((this.player.Character.Position.Row - 1), this.player.Character.Position.Column, this.player.Character.Direction, this.player.Character.CharacterClass);
-                                        break;
-                                    case 4: this.Shot = new ShotLogic((this.player.Character.Position.Row + 1), this.player.Character.Position.Column, this.player.Character.Direction, this.player.Character.CharacterClass);
-                                        break;
-                                }
+                                DoShoot();
                             }
                             Thread ShotThread = new Thread(new ThreadStart(this.Shot.Shoot));
                             ShotThread.Start();
                         }
-<<<<<<< HEAD
-=======
-                        else if (this.player.Character.CharacterClass == "Mage") { }
-=======
-                    case Keys.Down:
-                        if (this.player.Character.Direction == (int)Direction.Down && Movement.IsMoveAvailable(this.player.Character))
-                            Movement.Move(this.player.Character);
-                        else
-                            Movement.ChangeDirection(this.player.Character, (int)Direction.Down);
->>>>>>> 6b583b1c258696e11e40eb4d464f95c58c5919f1
->>>>>>> a62d0de908465d7ff0571e69780bef66808a2228
                         return true;
                 }
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void DoShoot()
+        {
+            switch (this.player.Character.Direction)
+            {
+                case (int)Direction.Left: this.Shot = new ShotLogic(this.player.Character.Position.Row, (this.player.Character.Position.Column - 1), this.player.Character.Direction, this.player.Character.CharacterClass);
+                    break;
+                case (int)Direction.Right: this.Shot = new ShotLogic(this.player.Character.Position.Row, (this.player.Character.Position.Column + 1), this.player.Character.Direction, this.player.Character.CharacterClass);
+                    break;
+                case (int)Direction.Up: this.Shot = new ShotLogic((this.player.Character.Position.Row - 1), this.player.Character.Position.Column, this.player.Character.Direction, this.player.Character.CharacterClass);
+                    break;
+                case (int)Direction.Down: this.Shot = new ShotLogic((this.player.Character.Position.Row + 1), this.player.Character.Position.Column, this.player.Character.Direction, this.player.Character.CharacterClass);
+                    break;
+            }
         }
         public Window()
         {
@@ -707,13 +619,6 @@ namespace GUI
             this.MainMenu = new MainMenuScreen();
             this.PauseMenu = new PauseMenuScreen();
             this.CharacterSelectMenu = new CharacterSelectMenuScreen();
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-
->>>>>>> 6b583b1c258696e11e40eb4d464f95c58c5919f1
->>>>>>> a62d0de908465d7ff0571e69780bef66808a2228
             Execute("Main menu");
         }
     }

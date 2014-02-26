@@ -24,39 +24,42 @@ namespace Data
             {
                 switch (this.shot.Direction)
                 {
-                    case 1: LevelGrid.SetGridItemValue(this.shot.Position.Row, this.shot.Position.Column, 21);
+                    case (int)Direction.Left: LevelGrid.SetGridItemValue(this.shot.Position.Row, this.shot.Position.Column, (int)Images.ArrowLeft);
                         break;
-                    case 2: LevelGrid.SetGridItemValue(this.shot.Position.Row, this.shot.Position.Column, 22);
+                    case (int)Direction.Right: LevelGrid.SetGridItemValue(this.shot.Position.Row, this.shot.Position.Column, (int)Images.ArrowRight);
                         break;
-                    case 3: LevelGrid.SetGridItemValue(this.shot.Position.Row, this.shot.Position.Column, 23);
+                    case (int)Direction.Up: LevelGrid.SetGridItemValue(this.shot.Position.Row, this.shot.Position.Column, (int)Images.ArrowUp);
                         break;
-                    case 4: LevelGrid.SetGridItemValue(this.shot.Position.Row, this.shot.Position.Column, 24);
+                    case (int)Direction.Down: LevelGrid.SetGridItemValue(this.shot.Position.Row, this.shot.Position.Column, (int)Images.ArrowDown);
                         break;
                 }
             }
-            else LevelGrid.SetGridItemValue(this.shot.Position.Row, this.shot.Position.Column, 20);
+            else LevelGrid.SetGridItemValue(this.shot.Position.Row, this.shot.Position.Column, (int)Images.Fireball);
+
             while (Movement.IsMoveAvailable(shot))
             {
                 Thread.Sleep(250);
                 Movement.Move(shot);
             }
+
             Thread.Sleep(250);
-            LevelGrid.SetGridItemValue(this.shot.Position.Row, this.shot.Position.Column, 9);
+            LevelGrid.SetGridItemValue(this.shot.Position.Row, this.shot.Position.Column, (int)Images.Empty);
+
             switch (this.shot.Direction)
             {
-                case 1:
+                case (int)Direction.Left:
                     if (LevelGrid.GetGridItemValue(shot.Position.Row, (shot.Position.Column - 1)) == "Demon")
                         Movement.Encounter("Demon", this.shot.Direction);
                     return;
-                case 2:
+                case (int)Direction.Right:
                     if (LevelGrid.GetGridItemValue(shot.Position.Row, (shot.Position.Column + 1)) == "Demon")
                         Movement.Encounter("Demon", this.shot.Direction);
                     return;
-                case 3:
+                case (int)Direction.Up:
                     if (LevelGrid.GetGridItemValue((shot.Position.Row - 1), shot.Position.Column) == "Demon")
                         Movement.Encounter("Demon", this.shot.Direction);
                     return;
-                case 4:
+                case (int)Direction.Down:
                     if (LevelGrid.GetGridItemValue((shot.Position.Row + 1), shot.Position.Column) == "Demon")
                         Movement.Encounter("Demon", this.shot.Direction);
                     return;

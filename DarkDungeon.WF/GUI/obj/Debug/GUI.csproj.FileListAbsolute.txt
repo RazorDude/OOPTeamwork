@@ -17,17 +17,6 @@ C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\GUI\bin\Debug\Data.dl
 C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\GUI\bin\Debug\Data.pdb
 C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\GUI\obj\Debug\GUI.csprojResolveAssemblyReference.cache
 C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\GUI\obj\Debug\GUI.Properties.Resources.resources
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\GUI\obj\Debug\GUI.csproj.GenerateResource.Cache
-<<<<<<< HEAD
-C:\Users\RazorDude\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\GUI\bin\Debug\Data.dll
-C:\Users\RazorDude\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\GUI\bin\Debug\Data.pdb
-=======
-=======
->>>>>>> 6b583b1c258696e11e40eb4d464f95c58c5919f1
->>>>>>> a62d0de908465d7ff0571e69780bef66808a2228
 C:\Users\Tanya\Source\Repos\OOPTeamwork4\DarkDungeon.WF\GUI\bin\Debug\GUI.exe.config
 C:\Users\Tanya\Source\Repos\OOPTeamwork4\DarkDungeon.WF\GUI\obj\Debug\GUI.exe
 C:\Users\Tanya\Source\Repos\OOPTeamwork4\DarkDungeon.WF\GUI\obj\Debug\GUI.pdb
@@ -38,7 +27,6 @@ C:\Users\Tanya\Source\Repos\OOPTeamwork4\DarkDungeon.WF\GUI\bin\Debug\Data.pdb
 C:\Users\Tanya\Source\Repos\OOPTeamwork4\DarkDungeon.WF\GUI\obj\Debug\GUI.csprojResolveAssemblyReference.cache
 C:\Users\Tanya\Source\Repos\OOPTeamwork4\DarkDungeon.WF\GUI\obj\Debug\GUI.Properties.Resources.resources
 C:\Users\Tanya\Source\Repos\OOPTeamwork4\DarkDungeon.WF\GUI\obj\Debug\GUI.csproj.GenerateResource.Cache
-<<<<<<< HEAD
 C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\GUI\obj\Debug\GUI.csproj.GenerateResource.Cache
 D:\Telerik\OOP\Teamwork\OOPTeamwork_25.02_enum\DarkDungeon.WF\GUI\bin\Debug\GUI.exe.config
 D:\Telerik\OOP\Teamwork\OOPTeamwork_25.02_enum\DarkDungeon.WF\GUI\obj\Debug\GUI.exe
@@ -63,10 +51,13 @@ C:\Users\Diana\Desktop\DarkDungeon.WF_v2\DarkDungeon.WF\GUI\bin\Debug\Data.pdb
 C:\Users\Diana\Desktop\DarkDungeon.WF_v2\DarkDungeon.WF\GUI\obj\Debug\GUI.csprojResolveAssemblyReference.cache
 C:\Users\Diana\Desktop\DarkDungeon.WF_v2\DarkDungeon.WF\GUI\obj\Debug\GUI.Properties.Resources.resources
 C:\Users\Diana\Desktop\DarkDungeon.WF_v2\DarkDungeon.WF\GUI\obj\Debug\GUI.csproj.GenerateResource.Cache
-=======
-<<<<<<< HEAD
->>>>>>> 7867dd1429f112bfb10aaa8cca95367677c33283
-=======
-C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\GUI\obj\Debug\GUI.csproj.GenerateResource.Cache
->>>>>>> 6b583b1c258696e11e40eb4d464f95c58c5919f1
->>>>>>> a62d0de908465d7ff0571e69780bef66808a2228
+C:\Users\Diana\Desktop\DarkDungeon.WF_v3\DarkDungeon.WF\GUI\bin\Debug\GUI.exe.config
+C:\Users\Diana\Desktop\DarkDungeon.WF_v3\DarkDungeon.WF\GUI\obj\Debug\GUI.exe
+C:\Users\Diana\Desktop\DarkDungeon.WF_v3\DarkDungeon.WF\GUI\obj\Debug\GUI.pdb
+C:\Users\Diana\Desktop\DarkDungeon.WF_v3\DarkDungeon.WF\GUI\bin\Debug\GUI.exe
+C:\Users\Diana\Desktop\DarkDungeon.WF_v3\DarkDungeon.WF\GUI\bin\Debug\GUI.pdb
+C:\Users\Diana\Desktop\DarkDungeon.WF_v3\DarkDungeon.WF\GUI\bin\Debug\Data.dll
+C:\Users\Diana\Desktop\DarkDungeon.WF_v3\DarkDungeon.WF\GUI\bin\Debug\Data.pdb
+C:\Users\Diana\Desktop\DarkDungeon.WF_v3\DarkDungeon.WF\GUI\obj\Debug\GUI.csprojResolveAssemblyReference.cache
+C:\Users\Diana\Desktop\DarkDungeon.WF_v3\DarkDungeon.WF\GUI\obj\Debug\GUI.Properties.Resources.resources
+C:\Users\Diana\Desktop\DarkDungeon.WF_v3\DarkDungeon.WF\GUI\obj\Debug\GUI.csproj.GenerateResource.Cache

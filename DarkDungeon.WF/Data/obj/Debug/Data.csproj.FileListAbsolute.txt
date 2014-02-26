@@ -7,28 +7,11 @@ C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\Data\bin\Debug\Data.d
 C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\Data\bin\Debug\Data.pdb
 C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\Data\obj\Debug\Data.dll
 C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\Data\obj\Debug\Data.pdb
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 6b583b1c258696e11e40eb4d464f95c58c5919f1
-C:\Users\RazorDude\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
-C:\Users\RazorDude\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\Data\obj\Debug\Data.dll
-C:\Users\RazorDude\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\Data\obj\Debug\Data.pdb
-C:\Users\RazorDude\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\Data\bin\Debug\Data.dll
-C:\Users\RazorDude\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\Data\bin\Debug\Data.pdb
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 6b583b1c258696e11e40eb4d464f95c58c5919f1
->>>>>>> a62d0de908465d7ff0571e69780bef66808a2228
 C:\Users\Tanya\Source\Repos\OOPTeamwork4\DarkDungeon.WF\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
 C:\Users\Tanya\Source\Repos\OOPTeamwork4\DarkDungeon.WF\Data\obj\Debug\Data.dll
 C:\Users\Tanya\Source\Repos\OOPTeamwork4\DarkDungeon.WF\Data\obj\Debug\Data.pdb
 C:\Users\Tanya\Source\Repos\OOPTeamwork4\DarkDungeon.WF\Data\bin\Debug\Data.dll
 C:\Users\Tanya\Source\Repos\OOPTeamwork4\DarkDungeon.WF\Data\bin\Debug\Data.pdb
-<<<<<<< HEAD
 C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
 C:\Users\RazorDude\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\Data\bin\Debug\Data.dll
 C:\Users\RazorDude\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\Data\bin\Debug\Data.pdb
@@ -40,10 +23,8 @@ C:\Users\Diana\Desktop\DarkDungeon.WF_v2\DarkDungeon.WF\Data\obj\Debug\Data.cspr
 C:\Users\Diana\Desktop\DarkDungeon.WF_v2\DarkDungeon.WF\Data\obj\Debug\Data.dll
 C:\Users\Diana\Desktop\DarkDungeon.WF_v2\DarkDungeon.WF\Data\obj\Debug\Data.pdb
 C:\Users\RazorDude\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
-=======
-<<<<<<< HEAD
->>>>>>> 7867dd1429f112bfb10aaa8cca95367677c33283
-=======
-C:\Users\Diana\Documents\GitHub\OOPTeamwork\DarkDungeon.WF\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
->>>>>>> 6b583b1c258696e11e40eb4d464f95c58c5919f1
->>>>>>> a62d0de908465d7ff0571e69780bef66808a2228
+C:\Users\Diana\Desktop\DarkDungeon.WF_v3\DarkDungeon.WF\Data\bin\Debug\Data.dll
+C:\Users\Diana\Desktop\DarkDungeon.WF_v3\DarkDungeon.WF\Data\bin\Debug\Data.pdb
+C:\Users\Diana\Desktop\DarkDungeon.WF_v3\DarkDungeon.WF\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
+C:\Users\Diana\Desktop\DarkDungeon.WF_v3\DarkDungeon.WF\Data\obj\Debug\Data.dll
+C:\Users\Diana\Desktop\DarkDungeon.WF_v3\DarkDungeon.WF\Data\obj\Debug\Data.pdb

@@ -1,5 +1,5 @@
-﻿using System;
-using Data.GridItem;
+﻿using Data.GridItem;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -224,17 +224,8 @@ namespace GUI
                 {
                     x += this.squareWidth;
                     index = int.Parse(levelData.ReadLine());
-<<<<<<< HEAD
                     if ((index == (int)Images.CharacterLeft) || (index == (int)Images.CharacterRight) || (index == (int)Images.CharacterUp) ||
                         (index == (int)Images.CharacterDown) || (index == (int)Images.Demon))
-=======
-<<<<<<< HEAD
-                    if ((index == 10) || (index == 11) || (index == 12) || (index == 13))
-=======
-                    if ((index == (int)Images.CharacterLeft) || (index == (int)Images.CharacterRight) || (index == (int)Images.CharacterUp) ||
-                        (index == (int)Images.CharacterDown) || (index == (int)Images.Demon))
->>>>>>> 6b583b1c258696e11e40eb4d464f95c58c5919f1
->>>>>>> a62d0de908465d7ff0571e69780bef66808a2228
                     {
                         Window.LoadCharacter(i, j, index);
                     }
@@ -280,17 +271,8 @@ namespace GUI
                 for (int j = 0; j < levelWidth; j++)
                 {
                     x += this.squareWidth;
-<<<<<<< HEAD
                     if ((savedSlot[index] == (int)Images.CharacterLeft) || (savedSlot[index] == (int)Images.CharacterRight) ||
                         (savedSlot[index] == (int)Images.CharacterUp) || (savedSlot[index] == (int)Images.CharacterDown) || (savedSlot[index] == (int)Images.Demon))
-=======
-<<<<<<< HEAD
-                    if ((savedSlot[index] == 10) || (savedSlot[index] == 11) || (savedSlot[index] == 12) || (savedSlot[index] == 13))
-=======
-                    if ((savedSlot[index] == (int)Images.CharacterLeft) || (savedSlot[index] == (int)Images.CharacterRight) ||
-                        (savedSlot[index] == (int)Images.CharacterUp) || (savedSlot[index] == (int)Images.CharacterDown) || (savedSlot[index] == (int)Images.Demon))
->>>>>>> 6b583b1c258696e11e40eb4d464f95c58c5919f1
->>>>>>> a62d0de908465d7ff0571e69780bef66808a2228
                     {
                         Window.LoadCharacter(i, j, index);
                     }
@@ -493,11 +475,6 @@ namespace GUI
             for (int i = 0; i < visualDataList.Count; i++) visualData[i] = visualDataList[i];
             return visualData;
         }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> a62d0de908465d7ff0571e69780bef66808a2228
 
         public int[,] SimplifeidField()
         {
@@ -518,9 +495,5 @@ namespace GUI
             }
             return result;
         }
-<<<<<<< HEAD
-=======
->>>>>>> 6b583b1c258696e11e40eb4d464f95c58c5919f1
->>>>>>> a62d0de908465d7ff0571e69780bef66808a2228
     }
 }
