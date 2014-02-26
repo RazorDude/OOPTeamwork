@@ -114,6 +114,13 @@ namespace Data.Characters
 
             this.Health -= takenDamage;
 
+            if(this.IsDead())
+            {
+                LevelGrid.SetGridItemValue(this.Position.Row, this.Position.Column, (int)Images.Empty);
+                this.Position.Row = 10;
+                this.Position.Column = 32;
+            }
+
             return takenDamage;
         }
     }

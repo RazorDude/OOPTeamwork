@@ -449,12 +449,10 @@ namespace GUI
                 }
                 else
                 {
-                    if (this.enemy.Position.Column != 32)
+                    if (this.enemy.Position.Column == 32)
                     {
                         this.UpdateStatusBox("Score", (this.level.GetStatusBoxData("Score") + 100));
-                        LevelGrid.SetGridItemValue(this.enemy.Position.Row, this.enemy.Position.Column, (int)Images.Empty);
-                        this.enemy.Position.Row = 10;
-                        this.enemy.Position.Column = 32;
+                        this.enemy.Position.Column = 33;
                     }
                 }
                 switch (keyData)
@@ -572,8 +570,6 @@ namespace GUI
                                 this.UpdateStatusBox("Ammo", (this.level.GetStatusBoxData("Ammo") - 1));
                                 DoShoot();
                             }
-                            Thread ShotThread = new Thread(new ThreadStart(this.Shot.Shoot));
-                            ShotThread.Start();
                         }
                         else if ((this.player.Character.CharacterClass == "Mage") && (this.player.Character.Mana > 0))
                         {
@@ -583,8 +579,6 @@ namespace GUI
                                 this.UpdateStatusBox("Ammo", (this.level.GetStatusBoxData("Ammo") - 20));
                                 DoShoot();
                             }
-                            Thread ShotThread = new Thread(new ThreadStart(this.Shot.Shoot));
-                            ShotThread.Start();
                         }
                         return true;
                 }
@@ -605,6 +599,8 @@ namespace GUI
                 case (int)Direction.Down: this.Shot = new ShotLogic((this.player.Character.Position.Row + 1), this.player.Character.Position.Column, this.player.Character.Direction, this.player.Character.CharacterClass);
                     break;
             }
+            Thread ShotThread = new Thread(new ThreadStart(this.Shot.Shoot));
+            ShotThread.Start();
         }
         public Window()
         {
