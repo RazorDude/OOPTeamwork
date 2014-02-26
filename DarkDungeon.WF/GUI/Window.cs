@@ -449,8 +449,13 @@ namespace GUI
                 }
                 else
                 {
-                    this.UpdateStatusBox("Score", (this.level.GetStatusBoxData("Score") + 100));
-                    LevelGrid.SetGridItemValue(this.enemy.Position.Row, this.enemy.Position.Column, (int)Images.Empty);
+                    if (this.enemy.Position.Column != 32)
+                    {
+                        this.UpdateStatusBox("Score", (this.level.GetStatusBoxData("Score") + 100));
+                        LevelGrid.SetGridItemValue(this.enemy.Position.Row, this.enemy.Position.Column, (int)Images.Empty);
+                        this.enemy.Position.Row = 10;
+                        this.enemy.Position.Column = 32;
+                    }
                 }
                 switch (keyData)
                 {
