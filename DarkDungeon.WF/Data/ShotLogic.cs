@@ -37,39 +37,29 @@ namespace Data
             else LevelGrid.SetGridItemValue(this.shot.Position.Row, this.shot.Position.Column, 20);
             while (Movement.IsMoveAvailable(shot))
             {
-                Thread.Sleep(500);
+                Thread.Sleep(250);
                 Movement.Move(shot);
             }
+            Thread.Sleep(250);
+            LevelGrid.SetGridItemValue(this.shot.Position.Row, this.shot.Position.Column, 9);
             switch (this.shot.Direction)
             {
                 case 1:
-                    if (LevelGrid.GetGridItemValue(shot.Position.Row, (shot.Position.Column - 1)) == "Demon") return;
-                    else
-                    {
-                        LevelGrid.SetGridItemValue(this.shot.Position.Row, this.shot.Position.Column, 9);
-                        return;
-                    }
+                    if (LevelGrid.GetGridItemValue(shot.Position.Row, (shot.Position.Column - 1)) == "Demon")
+                        Movement.Encounter("Demon", this.shot.Direction);
+                    return;
                 case 2:
-                    if (LevelGrid.GetGridItemValue(shot.Position.Row, (shot.Position.Column + 1)) == "Demon") return;
-                    else
-                    {
-                        LevelGrid.SetGridItemValue(this.shot.Position.Row, this.shot.Position.Column, 9);
-                        return;
-                    }
+                    if (LevelGrid.GetGridItemValue(shot.Position.Row, (shot.Position.Column + 1)) == "Demon")
+                        Movement.Encounter("Demon", this.shot.Direction);
+                    return;
                 case 3:
-                    if (LevelGrid.GetGridItemValue((shot.Position.Row - 1), shot.Position.Column) == "Demon") return;
-                    else
-                    {
-                        LevelGrid.SetGridItemValue(this.shot.Position.Row, this.shot.Position.Column, 9);
-                        return;
-                    }
+                    if (LevelGrid.GetGridItemValue((shot.Position.Row - 1), shot.Position.Column) == "Demon")
+                        Movement.Encounter("Demon", this.shot.Direction);
+                    return;
                 case 4:
-                    if (LevelGrid.GetGridItemValue((shot.Position.Row + 1), shot.Position.Column) == "Demon") return;
-                    else
-                    {
-                        LevelGrid.SetGridItemValue(this.shot.Position.Row, this.shot.Position.Column, 9);
-                        return;
-                    }
+                    if (LevelGrid.GetGridItemValue((shot.Position.Row + 1), shot.Position.Column) == "Demon")
+                        Movement.Encounter("Demon", this.shot.Direction);
+                    return;
             }
         }
     }

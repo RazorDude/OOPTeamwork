@@ -1,12 +1,16 @@
-﻿using System;
+﻿using Data.Exceptions;
+using Data.GridItem;
+using System;
 using MovementFolder = Data.Characters.Movement;
 
 namespace Data.Characters.Enemies
 {
+    public delegate void HpLossDelegate(string param, int value, bool flag);
     public class Enemy : Character
     {
+        public static HpLossDelegate HpLoss;
         public Enemy()
-            : this(1, 20, 20, 2, 2, 50, 1)
+            : this(1, 20, 20, 2, 0, 50, 1)
         {
         }
 
@@ -20,18 +24,41 @@ namespace Data.Characters.Enemies
         {
         }
 
-        public void FindDirectionAndMove(MovementFolder.MazeSolver maze)
-        {
-            // temp value. To be updated with the correct object
-            var hero = new Data.Characters.PlayerCharacters.PlayerCharacter("Hero");
+        protected bool CanMove { get; set; }
 
-            int nextDirection = maze.FindPath(this.Position.Row, this.Position.Column, hero.Position.Row, hero.Position.Column);
-            MovementFolder.Movement.ChangeDirection(this, nextDirection);
-            MovementFolder.Movement.Move(this);
+        public void FindDirectionAndMove(MovementFolder.MazeSolver maze, Data.Characters.PlayerCharacters.PlayerCharacter hero)
+        {
+            int nextDirection = default(int);
+
+            if (this.CanMove)
+            {
+                try
+                {
+                    nextDirection = maze.FindPath(this.Position.Row, this.Position.Column, hero.Position.Row, hero.Position.Column);
+                    MovementFolder.Movement.ChangeDirection(this, nextDirection);
+                    MovementFolder.Movement.Move(this);
+                    this.CanMove = false;
+                }
+                catch (NullReferenceException) // when there is no path between the demon and the hero
+                {
+                    nextDirection = hero.Direction;
+                }                
+            }
+            else
+            {
+                this.CanMove = true;
+            }
+
             if (MovementFolder.Movement.CollisionDetect(this, hero))
             {
-               // TO DO Battle
+                int takenDamageDemon = this.TakeDamage(this.DealDamage());  // decrease enemy health
+                int takenDamageHero = hero.TakeDamage(hero.DealDamage());  // decrease hero health
+                HpLoss("HP", takenDamageHero, true);
+                if (hero.IsDead()) // game end
+                {
+                    throw new GameEndException("End Game!"); // catch the exception and call MainMenu
+                }
             }
-        }
+        }        
     }
 }

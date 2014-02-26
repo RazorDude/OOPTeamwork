@@ -7,17 +7,18 @@ namespace Data.Characters
     public abstract class Character : GridViewItem, IImprovable, IFightable
     {
         public bool IsProjectile { get; set; }
+       
         public Equipment Equipment { get; protected set; }
 
         public int Level { get; protected set; }
 
         public int Experience { get; protected set; }
 
-        public int Health { get; protected set; }
+        public int Health { get; set; }
 
-        public int Mana { get; protected set; }
+        public int Mana { get; set; }
 
-        public int Strength { get; protected set; }
+        public int Strength { get; set; }
 
         public int Defence { get; protected set; }
         
@@ -90,7 +91,6 @@ namespace Data.Characters
             int damage = 0;
 
             damage += this.Equipment.DealDamage();
-            damage += this.Strength;
 
             return damage;
         }
@@ -100,7 +100,8 @@ namespace Data.Characters
             int absorbedDamage = 0;
 
             absorbedDamage += this.Defence;
-            absorbedDamage += this.AbsorbDamage(damage);
+            // absorbedDamage += this.AbsorbDamage(damage);
+            //absorbedDamage += this.Equipment.AbsorbDamage(damage);
 
             int remainedDamage = Math.Max(damage - absorbedDamage, 0);
 

@@ -1,9 +1,11 @@
 ﻿using Data;
-using Data.Player;
-using Data.GridItem;
+using Data.Characters.Enemies;
 using Data.Characters.Movement;
+using Data.Exceptions;
+using Data.GridItem;
 using Data.Items;
 using Data.Items.Potions;
+using Data.Player;
 using System;
 using System.Drawing;
 using System.Threading;
@@ -15,7 +17,7 @@ namespace GUI
     public delegate void ExecuteDelegate(string param);
     public delegate void LoadMenuEnteredDelegate();
     public delegate void LoadCharacterDelegate(int row, int column, int imageIndex);
-    delegate void ChangeDelegate (int[] data);
+    delegate void ChangeDelegate(int[] data);
 
     public class Window : Form
     {
@@ -30,6 +32,7 @@ namespace GUI
         LoadMenuScreen LoadMenu;
         CharacterSelectMenuScreen CharacterSelectMenu;
         Player player;
+        Enemy enemy;
         Level level;
         ShotLogic Shot;
         void LoadImages()
@@ -98,16 +101,29 @@ namespace GUI
         {
             this.player = new Player(this.CharacterSelectMenu.PlayerName);
             this.player.CreateCharacter(this.CharacterSelectMenu.CharacterName, param);
+            this.player.Character.CharacterClass = param;
+            this.player.Character.Equipment.SetWeapon(20, 0);
             this.ExecuteNewGame();
         }
         void ExecuteNewGame()
         {
             this.Clear();
             this.BackColor = Color.Black;
+            this.enemy = new Enemy();
             level = new Level();
             level.LoadLevel("Data\\Levels\\level1.dat", this.imageList, this.player.Character.CharacterClass);
+            this.level.SetHP(this.player.Character.Health);
             this.currentState = "Ingame";
             this.Controls.AddRange(level.GetControlData());
+            switch (this.player.Character.CharacterClass)
+            {
+                case "Knight": this.UpdateStatusBox("Ammo", this.player.Character.Strength);
+                    break;
+                case "Marksman": this.UpdateStatusBox("Ammo", this.player.Character.Equipment.Arrows);
+                    break;
+                case "Mage": this.UpdateStatusBox("Ammo", this.player.Character.Mana);
+                    break;
+            }
         }
         void ExecuteSaveGameMenu()
         {
@@ -221,30 +237,24 @@ namespace GUI
         }
         void OnPlayerDirectionChange(int direction)
         {
-            int row = this.player.Character.Position.Row, column = this.player.Character.Position.Column;
-            if (direction == 1)
+            int row = this.player.Character.Position.Row;
+            int column = this.player.Character.Position.Column;
+
+            if (direction == (int)Direction.Left)
             {
-                this.Controls.Remove(this.level.GetVisualData(column, row));
-                this.level.SetSquareImageIndex(column, row, 10, this.imageList.Images[10]);
-                this.Controls.Add(this.level.GetVisualData(column, row));
+                ChangeImage(row, column, 10);
             }
-            else if (direction == 2)
+            else if (direction == (int)Direction.Right)
             {
-                this.Controls.Remove(this.level.GetVisualData(column, row));
-                this.level.SetSquareImageIndex(column, row, 11, this.imageList.Images[11]);
-                this.Controls.Add(this.level.GetVisualData(column, row));
+                ChangeImage(row, column, 11);
             }
-            else if (direction == 3)
+            else if (direction == (int)Direction.Up)
             {
-                this.Controls.Remove(this.level.GetVisualData(column, row));
-                this.level.SetSquareImageIndex(column, row, 12, this.imageList.Images[12]);
-                this.Controls.Add(this.level.GetVisualData(column, row));
+                ChangeImage(row, column, 12);
             }
-            else if (direction == 4)
+            else if (direction == (int)Direction.Down)
             {
-                this.Controls.Remove(this.level.GetVisualData(column, row));
-                this.level.SetSquareImageIndex(column, row, 13, this.imageList.Images[13]);
-                this.Controls.Add(this.level.GetVisualData(column, row));
+                ChangeImage(row, column, 13);
             }
         }
         void OnGridItemChange(int row, int column, int imageIndex)
@@ -256,59 +266,105 @@ namespace GUI
             if (InvokeRequired)
             {
                 ChangeDelegate d = new ChangeDelegate(this.UpdateOnGridItemChange);
-                Invoke(d,a);
+                Invoke(d, a);
                 return;
             }
             this.UpdateOnGridItemChange(a);
         }
         void UpdateOnGridItemChange(int[] data)
         {
-            this.Controls.Remove(this.level.GetVisualData(data[1], data[0]));
-            this.level.SetSquareImageIndex(data[1], data[0], data[2], this.imageList.Images[data[2]], true);
-            this.Controls.Add(this.level.GetVisualData(data[1], data[0]));
+            this.ChangeImage(data[0], data[1], data[2], true);
+        }
+        void UpdateStatusBox(string param, int value)
+        {
+            switch (param)
+            {
+                case "HP": this.Controls.Remove(this.level.GetHP());
+                    this.Controls.Add(this.level.SetHP(value));
+                    break;
+                case "Ammo": this.Controls.Remove(this.level.GetAmmo());
+                    this.Controls.Add(this.level.SetAmmo(value));
+                    break;
+                case "Potions": this.Controls.Remove(this.level.GetPotions());
+                    this.Controls.Add(this.level.SetPotions(value));
+                    break;
+                case "Keys": this.Controls.Remove(this.level.Getkeys());
+                    this.Controls.Add(this.level.SetKeys(value));
+                    break;
+                case "Score": this.Controls.Remove(this.level.GetScore());
+                    this.Controls.Add(this.level.SetScore(value));
+                    break;
+            }
+        }
+        void UpdateStatusBox(string param, int value, bool flag)
+        {
+            switch (param)
+            {
+                case "HP": this.Controls.Remove(this.level.GetHP());
+                    this.Controls.Add(this.level.SetHP(this.level.GetStatusBoxData("HP") - value));
+                    break;
+                case "Ammo": this.Controls.Remove(this.level.GetAmmo());
+                    this.Controls.Add(this.level.SetAmmo(value));
+                    break;
+                case "Potions": this.Controls.Remove(this.level.GetPotions());
+                    this.Controls.Add(this.level.SetPotions(value));
+                    break;
+                case "Keys": this.Controls.Remove(this.level.Getkeys());
+                    this.Controls.Add(this.level.SetKeys(value));
+                    break;
+            }
+        }
+
+        private void ChangeImage(int row, int column, int imageIndex)
+        {
+            this.Controls.Remove(this.level.GetVisualData(column, row));
+            this.level.SetSquareImageIndex(column, row, imageIndex, this.imageList.Images[imageIndex]);
+            this.Controls.Add(this.level.GetVisualData(column, row));
+        }
+        private void ChangeImage(int row, int column, int imageIndex, bool noCallback)
+        {
+            this.Controls.Remove(this.level.GetVisualData(column, row));
+            this.level.SetSquareImageIndex(column, row, imageIndex, this.imageList.Images[imageIndex], true);
+            this.Controls.Add(this.level.GetVisualData(column, row));
+        }
+
+        protected void MoveEnemy()
+        {
+            int[,] map = this.level.SimplifeidField();
+            MazeSolver playGround = new MazeSolver(map);
+            this.enemy.FindDirectionAndMove(playGround, this.player.Character);
         }
         void OnEncounter(string param, int direction)
         {
             switch (param)
             {
+                case "Demon": this.enemy.TakeDamage(this.player.Character.DealDamage());
+                    break;
                 case "PotionRed": this.player.Character.Inventory.Potions.StrengthPotions.AddItem(new StrengthPotion(0, 20));
+                    this.UpdateStatusBox("Potions", (this.level.GetStatusBoxData("Potions") + 1));
                     break;
                 case "Quiver": this.player.Character.Equipment.Arrows += 10;
+                    this.UpdateStatusBox("Ammo", (this.level.GetStatusBoxData("Ammo") + 10));
                     break;
                 case "Potion": this.player.Character.Inventory.Potions.ManaPotions.AddItem(new ManaPotion(0, 20));
+                    this.UpdateStatusBox("Potions", (this.level.GetStatusBoxData("Potions") + 1));
                     break;
                 case "Key": this.player.Character.Inventory.Items.AddItem(new Key());
+                    this.UpdateStatusBox("Keys", (this.level.GetStatusBoxData("Keys") + 1));
                     this.level.KeysOnMap--;
                     break;
                 case "Door": if (this.player.Character.Inventory.Items.Items.Count > 0)
                     {
                         this.player.Character.Inventory.Items.RemoveItemByIndex(0);
-                        switch (direction)
-                        {
-                            case 1: this.level.SetSquareImageIndex((this.player.Character.Position.Column - 1), this.player.Character.Position.Row, 9, this.imageList.Images[9]);
-                                break;
-                            case 2: this.level.SetSquareImageIndex((this.player.Character.Position.Column + 1), this.player.Character.Position.Row, 9, this.imageList.Images[9]);
-                                break;
-                            case 3: this.level.SetSquareImageIndex(this.player.Character.Position.Column, (this.player.Character.Position.Row - 1), 9, this.imageList.Images[9]);
-                                break;
-                            case 4: this.level.SetSquareImageIndex(this.player.Character.Position.Column, (this.player.Character.Position.Row + 1), 9, this.imageList.Images[9]);
-                                break;
-                        }
+                        this.UpdateStatusBox("Keys", (this.level.GetStatusBoxData("Keys") - 1));
+
+                        SwitchDirection(direction);
                     }
                     break;
                 case "ExitDoor": if (this.level.KeysOnMap == 0)
                     {
-                        switch (direction)
-                        {
-                            case 1: this.level.SetSquareImageIndex((this.player.Character.Position.Column - 1), this.player.Character.Position.Row, 9, this.imageList.Images[9]);
-                                break;
-                            case 2: this.level.SetSquareImageIndex((this.player.Character.Position.Column + 1), this.player.Character.Position.Row, 9, this.imageList.Images[9]);
-                                break;
-                            case 3: this.level.SetSquareImageIndex(this.player.Character.Position.Column, (this.player.Character.Position.Row - 1), 9, this.imageList.Images[9]);
-                                break;
-                            case 4: this.level.SetSquareImageIndex(this.player.Character.Position.Column, (this.player.Character.Position.Row + 1), 9, this.imageList.Images[9]);
-                                break;
-                        }
+                        SwitchDirection(direction);
+
                         this.Clear();
                         this.BackColor = Color.Black;
                         level = new Level();
@@ -319,55 +375,196 @@ namespace GUI
                     break;
             }
         }
-        void CharacterLoad(int row, int column, int imageIndex)
+
+        private void SwitchDirection(int direction)
         {
-            this.player.Character.Position.Row = row;
-            this.player.Character.Position.Column = column;
-            switch (imageIndex)
+            switch (direction)
             {
-                case 10: this.player.Character.Direction = 1;
+                case (int)Direction.Left:
+                    this.level.SetSquareImageIndex((this.player.Character.Position.Column - 1), this.player.Character.Position.Row, (int)Images.Empty, this.imageList.Images[(int)Images.Empty]);
                     break;
-                case 11: this.player.Character.Direction = 2;
+                case (int)Direction.Right:
+                    this.level.SetSquareImageIndex((this.player.Character.Position.Column + 1), this.player.Character.Position.Row, (int)Images.Empty, this.imageList.Images[(int)Images.Empty]);
                     break;
-                case 12: this.player.Character.Direction = 3;
+                case (int)Direction.Up:
+                    this.level.SetSquareImageIndex(this.player.Character.Position.Column, (this.player.Character.Position.Row - 1), (int)Images.Empty, this.imageList.Images[(int)Images.Empty]);
                     break;
-                case 13: this.player.Character.Direction = 4;
+                case (int)Direction.Down:
+                    this.level.SetSquareImageIndex(this.player.Character.Position.Column, (this.player.Character.Position.Row + 1), (int)Images.Empty, this.imageList.Images[(int)Images.Empty]);
                     break;
             }
         }
+
+        void CharacterLoad(int row, int column, int imageIndex)
+        {
+            if (imageIndex == (int)Images.Demon)
+            {
+                this.enemy.Position.Row = row;
+                this.enemy.Position.Column = column;
+                this.enemy.Direction = (int)Direction.Left;
+            }
+            else
+            {
+                this.player.Character.Position.Row = row;
+                this.player.Character.Position.Column = column;
+                switch (imageIndex)
+                {
+                    case (int)Images.CharacterLeft: this.player.Character.Direction = (int)Direction.Left;
+                        break;
+                    case (int)Images.CharacterRight: this.player.Character.Direction = (int)Direction.Right;
+                        break;
+                    case (int)Images.CharacterUp: this.player.Character.Direction = (int)Direction.Up;
+                        break;
+                    case (int)Images.CharacterDown: this.player.Character.Direction = (int)Direction.Down;
+                        break;
+                }
+            }
+        }
+
         bool IsIngame()
         {
             return (this.currentState == "Ingame");
         }
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
+            if ((this.level.GetStatusBoxData("Score") % 1000) == 0)
+            {
+                this.player.Character.Health = 100;
+                this.UpdateStatusBox("HP", 100);
+            }
             if (this.IsIngame())
             {
+                if (!this.enemy.IsDead())
+                {
+                    try
+                    {
+                        this.MoveEnemy();
+                    }
+                    catch (GameEndException)
+                    {
+                        this.ExecuteMainMenu();
+                        return true;
+                    }
+                }
+                else
+                {
+                    this.UpdateStatusBox("Score", (this.level.GetStatusBoxData("Score") + 100));
+                    LevelGrid.SetGridItemValue(this.enemy.Position.Row, this.enemy.Position.Column, 9);
+                }
                 switch (keyData)
                 {
                     case Keys.Escape: Execute("Pause menu");
                         return true;
-                    case Keys.Left: if (this.player.Character.Direction == 1) Movement.Move(this.player.Character);
-                        else Movement.ChangeDirection(this.player.Character, 1);
+                    case Keys.Left:
+                        if (this.player.Character.Direction == (int)Direction.Left && Movement.IsMoveAvailable(this.player.Character))
+                        {
+                            this.UpdateStatusBox("Score", (this.level.GetStatusBoxData("Score") + 5));
+                            Movement.Move(this.player.Character);
+                        }
+                        else
+                            Movement.ChangeDirection(this.player.Character, (int)Direction.Left);
                         return true;
-                    case Keys.Right: if (this.player.Character.Direction == 2) Movement.Move(this.player.Character);
-                        else Movement.ChangeDirection(this.player.Character, 2);
+                    case Keys.Right:
+                        if (this.player.Character.Direction == (int)Direction.Right && Movement.IsMoveAvailable(this.player.Character))
+                        {
+                            this.UpdateStatusBox("Score", (this.level.GetStatusBoxData("Score") + 5));
+                            Movement.Move(this.player.Character);
+                        }
+                        else
+                            Movement.ChangeDirection(this.player.Character, (int)Direction.Right);
                         return true;
-                    case Keys.Up: if (this.player.Character.Direction == 3) Movement.Move(this.player.Character);
-                        else Movement.ChangeDirection(this.player.Character, 3);
+                    case Keys.Up:
+                        if (this.player.Character.Direction == (int)Direction.Up && Movement.IsMoveAvailable(this.player.Character))
+                        {
+                            this.UpdateStatusBox("Score", (this.level.GetStatusBoxData("Score") + 5));
+                            Movement.Move(this.player.Character);
+                        }
+                        else
+                            Movement.ChangeDirection(this.player.Character, (int)Direction.Up);
                         return true;
-                    case Keys.Down: if (this.player.Character.Direction == 4) Movement.Move(this.player.Character);
-                        else Movement.ChangeDirection(this.player.Character, 4);
+                    case Keys.Down:
+                        if (this.player.Character.Direction == (int)Direction.Down && Movement.IsMoveAvailable(this.player.Character))
+                        {
+                            this.UpdateStatusBox("Score", (this.level.GetStatusBoxData("Score") + 5));
+                            Movement.Move(this.player.Character);
+                        }
+                        else
+                            Movement.ChangeDirection(this.player.Character, (int)Direction.Down);
                         return true;
-                    case Keys.P:
+                    case Keys.P: switch (this.player.Character.CharacterClass)
+                        {
+                            case "Knight": if (this.player.Character.Inventory.Potions.StrengthPotions.Items.Count > 0)
+                                {
+                                    this.player.Character.Strength += 20;
+                                    this.UpdateStatusBox("Ammo", (this.level.GetStatusBoxData("Ammo") + 20));
+                                    this.player.Character.Inventory.Potions.StrengthPotions.Items.RemoveAt(0);
+                                    this.UpdateStatusBox("Potions", (this.level.GetStatusBoxData("Potions") - 1));
+                                }
+                                break;
+                            case "Mage": if (this.player.Character.Inventory.Potions.ManaPotions.Items.Count > 0)
+                                {
+                                    this.player.Character.Mana += 20;
+                                    this.UpdateStatusBox("Ammo", (this.level.GetStatusBoxData("Ammo") + 20));
+                                    this.player.Character.Inventory.Potions.ManaPotions.Items.RemoveAt(0);
+                                    this.UpdateStatusBox("Potions", (this.level.GetStatusBoxData("Potions") - 1));
+                                }
+                                break;
+                        }
                         return true;
-                    case Keys.Space: 
-                        if (this.player.Character.CharacterClass == "Knight") { }
+                    case Keys.Space:
+                        if ((this.player.Character.CharacterClass == "Knight") && (this.player.Character.Strength > 0))
+                        {
+                            switch (this.player.Character.Direction)
+                            {
+                                case 1: if (this.player.Character.Position.Column > 0)
+                                    {
+                                        if (this.level.GetSquareImageIndex((this.player.Character.Position.Column - 1), this.player.Character.Position.Row) == (int)Images.Demon)
+                                        {
+                                            this.player.Character.Strength -= 20;
+                                            this.UpdateStatusBox("Ammo", (this.level.GetStatusBoxData("Ammo") - 20));
+                                            this.enemy.TakeDamage(this.player.Character.DealDamage());
+                                        }
+                                    }
+                                    break;
+                                case 2: if (this.player.Character.Position.Column < 30)
+                                    {
+                                        if (this.level.GetSquareImageIndex((this.player.Character.Position.Column + 1), this.player.Character.Position.Row) == (int)Images.Demon)
+                                        {
+                                            this.player.Character.Strength -= 20;
+                                            this.UpdateStatusBox("Ammo", (this.level.GetStatusBoxData("Ammo") - 20));
+                                            this.enemy.TakeDamage(this.player.Character.DealDamage());
+                                        }
+                                    }
+                                    break;
+                                case 3: if (this.player.Character.Position.Row > 0)
+                                    {
+                                        if (this.level.GetSquareImageIndex(this.player.Character.Position.Column, (this.player.Character.Position.Row - 1)) == (int)Images.Demon)
+                                        {
+                                            this.player.Character.Strength -= 20;
+                                            this.UpdateStatusBox("Ammo", (this.level.GetStatusBoxData("Ammo") - 20));
+                                            this.enemy.TakeDamage(this.player.Character.DealDamage());
+                                        }
+                                    }
+                                    break;
+                                case 4: if (this.player.Character.Position.Row < 30)
+                                    {
+                                        if (this.level.GetSquareImageIndex(this.player.Character.Position.Column, (this.player.Character.Position.Row + 1)) == (int)Images.Demon)
+                                        {
+                                            this.player.Character.Strength -= 20;
+                                            this.UpdateStatusBox("Ammo", (this.level.GetStatusBoxData("Ammo") - 20));
+                                            this.enemy.TakeDamage(this.player.Character.DealDamage());
+                                        }
+                                    }
+                                    break;
+                            }
+                        }
                         else if ((this.player.Character.CharacterClass == "Marksman") && (this.player.Character.Equipment.Arrows > 0))
                         {
                             if (Movement.IsMoveAvailable(this.player.Character))
                             {
-                                if (this.player.Character.CharacterClass == "Marksman") this.player.Character.Equipment.Arrows--;
+                                this.player.Character.Equipment.Arrows--;
+                                this.UpdateStatusBox("Ammo", (this.level.GetStatusBoxData("Ammo") - 1));
                                 switch (this.player.Character.Direction)
                                 {
                                     case 1: this.Shot = new ShotLogic(this.player.Character.Position.Row, (this.player.Character.Position.Column - 1), this.player.Character.Direction, this.player.Character.CharacterClass);
@@ -383,7 +580,27 @@ namespace GUI
                             Thread ShotThread = new Thread(new ThreadStart(this.Shot.Shoot));
                             ShotThread.Start();
                         }
-                        else if (this.player.Character.CharacterClass == "Mage") { }
+                        else if ((this.player.Character.CharacterClass == "Mage") && (this.player.Character.Mana > 0))
+                        {
+                            if (Movement.IsMoveAvailable(this.player.Character))
+                            {
+                                this.player.Character.Mana -= 20;
+                                this.UpdateStatusBox("Ammo", (this.level.GetStatusBoxData("Ammo") - 20));
+                                switch (this.player.Character.Direction)
+                                {
+                                    case 1: this.Shot = new ShotLogic(this.player.Character.Position.Row, (this.player.Character.Position.Column - 1), this.player.Character.Direction, this.player.Character.CharacterClass);
+                                        break;
+                                    case 2: this.Shot = new ShotLogic(this.player.Character.Position.Row, (this.player.Character.Position.Column + 1), this.player.Character.Direction, this.player.Character.CharacterClass);
+                                        break;
+                                    case 3: this.Shot = new ShotLogic((this.player.Character.Position.Row - 1), this.player.Character.Position.Column, this.player.Character.Direction, this.player.Character.CharacterClass);
+                                        break;
+                                    case 4: this.Shot = new ShotLogic((this.player.Character.Position.Row + 1), this.player.Character.Position.Column, this.player.Character.Direction, this.player.Character.CharacterClass);
+                                        break;
+                                }
+                            }
+                            Thread ShotThread = new Thread(new ThreadStart(this.Shot.Shoot));
+                            ShotThread.Start();
+                        }
                         return true;
                 }
             }
@@ -401,6 +618,7 @@ namespace GUI
             LevelGrid.PlayerDirectionChanged += this.OnPlayerDirectionChange;
             LevelGrid.OnGridItemChanged += this.OnGridItemChange;
             Movement.Encounter += this.OnEncounter;
+            Enemy.HpLoss += this.UpdateStatusBox;
             this.currentState = "";
             this.LoadImages();
             this.MainMenu = new MainMenuScreen();
