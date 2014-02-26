@@ -20,6 +20,7 @@ namespace Data.Characters.Enemies
         {
         }
 
+<<<<<<< HEAD
         public void FindDirectionAndMove(MovementFolder.MazeSolver maze)
         {
             // temp value. To be updated with the correct object
@@ -28,6 +29,24 @@ namespace Data.Characters.Enemies
             int nextDirection = maze.FindPath(this.Position.Row, this.Position.Column, hero.Position.Row, hero.Position.Column);
             MovementFolder.Movement.ChangeDirection(this, nextDirection);
             MovementFolder.Movement.Move(this);
+=======
+        protected bool CanMove { get; set; }
+
+        public void FindDirectionAndMove(MovementFolder.MazeSolver maze, Data.Characters.PlayerCharacters.PlayerCharacter hero)
+        {
+            if (this.CanMove)
+            {
+                int nextDirection = maze.FindPath(this.Position.Row, this.Position.Column, hero.Position.Row, hero.Position.Column);
+                MovementFolder.Movement.ChangeDirection(this, nextDirection);
+                MovementFolder.Movement.Move(this);
+                this.CanMove = false;
+            }
+            else
+            {
+                this.CanMove = true;
+            }
+
+>>>>>>> 6b583b1c258696e11e40eb4d464f95c58c5919f1
             if (MovementFolder.Movement.CollisionDetect(this, hero))
             {
                // TO DO Battle

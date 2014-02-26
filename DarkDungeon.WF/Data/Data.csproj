@@ -50,6 +50,7 @@
     <Compile Include="Characters\PlayerCharacters\PlayerCharacter.cs" />
     <Compile Include="GridViewItem\GridViewItem.cs" />
     <Compile Include="GridViewItem\LevelGrid.cs" />
+<<<<<<< HEAD
     <Compile Include="GridViewItem\Items\ItemsCollections\Inventories\Equipment.cs" />
     <Compile Include="GridViewItem\Items\DefenceItems\DefenceItem.cs" />
     <Compile Include="GridViewItem\Items\DefenceItems\IDefensible.cs" />
@@ -69,6 +70,28 @@
     <Compile Include="GridViewItem\Items\Potions\StrengthPotion.cs" />
     <Compile Include="GridViewItem\Items\Weapons\IDamageDealable.cs" />
     <Compile Include="GridViewItem\Items\Weapons\Weapon.cs" />
+=======
+    <Compile Include="Images.cs" />
+    <Compile Include="Items\ItemsCollections\Inventories\Equipment.cs" />
+    <Compile Include="Items\DefenceItems\DefenceItem.cs" />
+    <Compile Include="Items\DefenceItems\IDefensible.cs" />
+    <Compile Include="Items\ItemsCollections\Inventories\Inventory.cs" />
+    <Compile Include="Items\Item.cs" />
+    <Compile Include="Items\ItemsCollections\ItemsCollection.cs" />
+    <Compile Include="Items\IWearable.cs" />
+    <Compile Include="Items\IWeightable.cs" />
+    <Compile Include="Items\Key.cs" />
+    <Compile Include="Items\Money\ITransactable.cs" />
+    <Compile Include="Items\Money\Money.cs" />
+    <Compile Include="Items\Potions\HealthPotion.cs" />
+    <Compile Include="Items\Potions\IConsumable.cs" />
+    <Compile Include="Items\Potions\ManaPotion.cs" />
+    <Compile Include="Items\Potions\Potion.cs" />
+    <Compile Include="Items\Potions\PotionsCollection.cs" />
+    <Compile Include="Items\Potions\StrengthPotion.cs" />
+    <Compile Include="Items\Weapons\IDamageDealable.cs" />
+    <Compile Include="Items\Weapons\Weapon.cs" />
+>>>>>>> 6b583b1c258696e11e40eb4d464f95c58c5919f1
     <Compile Include="Player\Player.cs" />
     <Compile Include="GridViewItem\Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

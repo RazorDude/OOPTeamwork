@@ -15,5 +15,10 @@ namespace Data.Items.Potions
         {
             return this.Bonus;
         }
+
+        void IConsumable.Consume()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
