@@ -430,7 +430,7 @@ namespace GUI
 
         private bool handleKey(ref Message msg, Keys keyData)
         {
-            if ((this.level.GetStatusBoxData("Score") % 1000) == 0)
+            if (level != null && (this.level.GetStatusBoxData("Score") % 1000) == 0)
             {
                 this.player.Character.Health = 100;
                 this.UpdateStatusBox("HP", 100);
