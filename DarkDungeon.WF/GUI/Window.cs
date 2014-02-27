@@ -25,6 +25,7 @@ namespace GUI
         public static LoadCharacterDelegate LoadCharacter;
         bool SaveMenuLoadedFlag, LoadMenuLoadedFlag;
         string currentState;
+        Random rnd = new Random();
         ImageList imageList;
         MainMenuScreen MainMenu;
         PauseMenuScreen PauseMenu;
@@ -401,6 +402,7 @@ namespace GUI
             {
                 this.enemy.Position.Row = row;
                 this.enemy.Position.Column = column;
+                this.enemy.OriginalPosition = new Position(this.enemy.Position.Row, this.enemy.Position.Column);
                 this.enemy.Direction = (int)Direction.Left;
             }
             else
@@ -426,13 +428,14 @@ namespace GUI
             return (this.currentState == "Ingame");
         }
 
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        private bool handleKey(ref Message msg, Keys keyData)
         {
             if ((this.level.GetStatusBoxData("Score") % 1000) == 0)
             {
                 this.player.Character.Health = 100;
                 this.UpdateStatusBox("HP", 100);
             }
+
             if (this.IsIngame())
             {
                 if (!this.enemy.IsDead())
@@ -449,10 +452,10 @@ namespace GUI
                 }
                 else
                 {
-                    if (this.enemy.Position.Column == 32)
+                    if (this.enemy.Position.Column == LevelGrid.AlmostOutOfGrid)
                     {
                         this.UpdateStatusBox("Score", (this.level.GetStatusBoxData("Score") + 100));
-                        this.enemy.Position.Column = 33;
+                        this.enemy.Position.Column = LevelGrid.OutOfGrid;
                     }
                 }
                 switch (keyData)
@@ -583,6 +586,35 @@ namespace GUI
                         return true;
                 }
             }
+
+            return false;
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            bool res = handleKey(ref msg, keyData);
+
+            if (res)
+            {
+                if (this.enemy.Position.Column == LevelGrid.OutOfGrid)
+                {
+                    if (rnd.Next(10) == 5)
+                    {
+                        Position p = this.enemy.OriginalPosition;
+
+                        if (this.player.Character.Position != p)
+                        {
+                            this.enemy = new Enemy();
+                            this.enemy.Position = p;
+                            this.enemy.OriginalPosition = new Position(this.enemy.Position.Row, this.enemy.Position.Column);
+                            LevelGrid.SetGridItemValue(this.enemy.Position.Row, this.enemy.Position.Column, (int)Images.Demon);
+                        }
+                    }
+                }
+
+                return res;
+            }
+
             return base.ProcessCmdKey(ref msg, keyData);
         }
 

@@ -10,7 +10,7 @@ namespace Data.Characters.Enemies
     {
         public static HpLossDelegate HpLoss;
         public Enemy()
-            : this(1, 20, 20, 2, 0, 50, 1)
+            : this(1, 40, 20, 2, 0, 50, 1)
         {
         }
 

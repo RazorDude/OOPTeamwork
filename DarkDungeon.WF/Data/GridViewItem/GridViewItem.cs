@@ -12,6 +12,7 @@ namespace Data.GridItem
             set { this.value = value; }
         }
         public Position Position { get; set; }
+        public Position OriginalPosition { get; set; }
 
         public GridViewItem()
         {

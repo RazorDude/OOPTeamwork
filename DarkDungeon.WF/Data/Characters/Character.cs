@@ -118,7 +118,7 @@ namespace Data.Characters
             {
                 LevelGrid.SetGridItemValue(this.Position.Row, this.Position.Column, (int)Images.Empty);
                 this.Position.Row = 10;
-                this.Position.Column = 32;
+                this.Position.Column = LevelGrid.AlmostOutOfGrid;
             }
 
             return takenDamage;

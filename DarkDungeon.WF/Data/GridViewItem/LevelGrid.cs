@@ -10,6 +10,8 @@ namespace Data.GridItem
     public delegate void GridItemChangedDelegate(int row, int column, int imageIndex);
     public static class LevelGrid
     {
+        public const int AlmostOutOfGrid = 32;
+        public const int OutOfGrid = 33;
         public static PlayerDirectionChangedDelegate PlayerDirectionChanged;
         public static GridItemChangedDelegate OnGridItemChanged;
         static GridViewItem[,] grid = new GridViewItem[19, 31];
