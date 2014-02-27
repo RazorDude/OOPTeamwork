@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Data.Characters.Character" Collapsed="true">
-    <Position X="3.75" Y="1.75" Width="1.5" />
+    <Position X="4.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAQAAAAAIAAAACAAEAQBAABAEEABAIAAogGAQAA=</HashCode>
       <FileName>Characters\Character.cs</FileName>
@@ -9,63 +9,63 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Data.Characters.Enemies.Enemy" Collapsed="true">
-    <Position X="2.5" Y="3.25" Width="1.5" />
+    <Position X="3.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAACAAAAABAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Characters\Enemies\Enemy.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Data.Characters.Movement.MazeSolver" Collapsed="true">
-    <Position X="19.25" Y="6.25" Width="1.5" />
+    <Position X="32" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAIAABAACAEIACAAAAIBAAAAAAIAAIEgAgAAggQA=</HashCode>
       <FileName>Characters\Movement\MazeSolver.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Data.Characters.Movement.Movement" Collapsed="true">
-    <Position X="15.75" Y="7.25" Width="1.5" />
+    <Position X="28.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAIAAAIAAAwAAAAAAAAAAAAAEACAAAAAAAAAAEAA=</HashCode>
       <FileName>Characters\Movement\Movement.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Data.Characters.PlayerCharacters.PlayerCharacter" Collapsed="true">
-    <Position X="4.75" Y="3.25" Width="1.5" />
+    <Position X="5.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAEAAAAgAAAAAAAAAAAAEAAAAAAAAAgAAAAA=</HashCode>
       <FileName>Characters\PlayerCharacters\PlayerCharacter.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Data.Exceptions.GameEndException" Collapsed="true">
-    <Position X="15.75" Y="6.25" Width="1.5" />
+    <Position X="28.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions\GameEndException.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Data.GridItem.GridViewItem" Collapsed="true">
-    <Position X="12.75" Y="0.5" Width="1.5" />
+    <Position X="14.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAACgAgAAAAAAAAAAAAACAAAABgAAAAQAA=</HashCode>
+      <HashCode>AAAAAAAAAAAACgAgAAAAAAAAAAAAACAAAABggAAAQAA=</HashCode>
       <FileName>GridViewItem\GridViewItem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Data.GridItem.LevelGrid" Collapsed="true">
-    <Position X="17.5" Y="6.25" Width="1.5" />
+    <Position X="30.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAIAIAAAAAAAAACAAAAACABAAABAAAAgAAA=</HashCode>
+      <HashCode>AAAAAAAAAAIAIAAAAAAAAACAAAAACARAAABAAIAgAAA=</HashCode>
       <FileName>GridViewItem\LevelGrid.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Data.GridItem.Position" Collapsed="true">
-    <Position X="19.25" Y="7.25" Width="1.5" />
+    <Position X="32" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
       <FileName>GridViewItem\Position.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Data.Items.DefenceItems.DefenceItem" Collapsed="true">
-    <Position X="13.25" Y="3.25" Width="1.5" />
+    <Position X="14.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
       <FileName>Items\DefenceItems\DefenceItem.cs</FileName>
@@ -73,7 +73,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Data.Items.Item" Collapsed="true">
-    <Position X="15" Y="1.75" Width="1.5" />
+    <Position X="17" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAACAAAAAAAAAAIAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Items\Item.cs</FileName>
@@ -81,14 +81,14 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Data.Items.Key" Collapsed="true">
-    <Position X="11.25" Y="3.25" Width="1.5" />
+    <Position X="12.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Items\Key.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Data.Items.ItemsCollections.Inventories.Equipment" Collapsed="true">
-    <Position X="0.5" Y="3.5" Width="1.5" />
+    <Position X="0.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAQACAAAIAAAAAAJAAAAEQAAAAgAEBkAAAAAACI=</HashCode>
       <FileName>Items\ItemsCollections\Inventories\Equipment.cs</FileName>
@@ -96,7 +96,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Data.Items.ItemsCollections.Inventories.Inventory" Collapsed="true">
-    <Position X="0.5" Y="1.5" Width="1.5" />
+    <Position X="0.75" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAQAQAACAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Items\ItemsCollections\Inventories\Inventory.cs</FileName>
@@ -104,14 +104,14 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Data.Items.ItemsCollections.ItemsCollection" Collapsed="true">
-    <Position X="17.5" Y="3.25" Width="1.5" />
+    <Position X="23.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAQQAACAIACAAAAAAgAAAAgAAAAAAEAAAAAAAAAAA=</HashCode>
       <FileName>Items\ItemsCollections\ItemsCollection.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Data.Items.Money.MoneyBag" Collapsed="true">
-    <Position X="7.25" Y="3.25" Width="1.5" />
+    <Position X="8" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAQAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
       <FileName>Items\Money\Money.cs</FileName>
@@ -119,21 +119,21 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Data.Items.Potions.HealthPotion" Collapsed="true">
-    <Position X="14" Y="4.75" Width="1.5" />
+    <Position X="17" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Items\Potions\HealthPotion.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Data.Items.Potions.ManaPotion" Collapsed="true">
-    <Position X="15.75" Y="4.75" Width="1.5" />
+    <Position X="19.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Items\Potions\ManaPotion.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Data.Items.Potions.Potion" Collapsed="true">
-    <Position X="15.75" Y="3.25" Width="1.5" />
+    <Position X="19.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAICAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Items\Potions\Potion.cs</FileName>
@@ -141,21 +141,21 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Data.Items.Potions.PotionsCollection" Collapsed="true">
-    <Position X="19.25" Y="3.25" Width="1.5" />
+    <Position X="26" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAI=</HashCode>
       <FileName>Items\Potions\PotionsCollection.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Data.Items.Potions.StrengthPotion" Collapsed="true">
-    <Position X="17.5" Y="4.75" Width="1.5" />
+    <Position X="21.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Items\Potions\StrengthPotion.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Data.Items.Weapons.Weapon" Collapsed="true">
-    <Position X="9.25" Y="3.25" Width="1.5" />
+    <Position X="10.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAASAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Items\Weapons\Weapon.cs</FileName>
@@ -163,119 +163,119 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Data.Player.Player" Collapsed="true">
-    <Position X="17.5" Y="7.25" Width="1.5" />
+    <Position X="30.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAEAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAACAA=</HashCode>
       <FileName>Player\Player.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Data.ShotLogic" Collapsed="true">
-    <Position X="15.75" Y="8.25" Width="1.5" />
+    <Position X="28.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAAAAAAABAAAAAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
       <FileName>ShotLogic.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="Data.Characters.IFightable" Collapsed="true">
-    <Position X="15.75" Y="10.25" Width="1.5" />
+    <Position X="28.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAQAAAAAIAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
       <FileName>Characters\IFightable.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Data.Characters.IImprovable" Collapsed="true">
-    <Position X="17.5" Y="10.25" Width="1.5" />
+    <Position X="30.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Characters\IImprovable.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Data.Items.DefenceItems.IDefensible" Collapsed="true">
-    <Position X="19.25" Y="9.5" Width="1.5" />
+    <Position X="32" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Items\DefenceItems\IDefensible.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Data.Items.IWearable" Collapsed="true">
-    <Position X="15.75" Y="11" Width="1.5" />
+    <Position X="28.5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Items\IWearable.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Data.Items.IWeightable" Collapsed="true">
-    <Position X="17.5" Y="11" Width="1.5" />
+    <Position X="30.25" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Items\IWeightable.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Data.Items.Money.ITransactable" Collapsed="true">
-    <Position X="19.25" Y="10.25" Width="1.5" />
+    <Position X="32" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
       <FileName>Items\Money\ITransactable.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Data.Items.Potions.IConsumable" Collapsed="true">
-    <Position X="15.75" Y="9.5" Width="1.5" />
+    <Position X="28.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Items\Potions\IConsumable.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Data.Items.Weapons.IDamageDealable" Collapsed="true">
-    <Position X="17.5" Y="9.5" Width="1.5" />
+    <Position X="30.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Items\Weapons\IDamageDealable.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Enum Name="Direction" Collapsed="true">
-    <Position X="15.75" Y="12" Width="1.5" />
+    <Position X="28.5" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAACACAAAAAAAI=</HashCode>
       <FileName>Characters\Movement\Direction.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="Images" Collapsed="true">
-    <Position X="17.5" Y="12" Width="1.5" />
+    <Position X="30.25" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACiAIBAEEEAQAAAIFAAAQIAIAQAAAEBowCACQBAA=</HashCode>
       <FileName>Images.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Delegate Name="Data.Characters.Enemies.HpLossDelegate" Collapsed="true">
-    <Position X="19.25" Y="13" Width="1.5" />
+    <Position X="32" Y="7.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAgACAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
       <FileName>Characters\Enemies\Enemy.cs</FileName>
     </TypeIdentifier>
   </Delegate>
   <Delegate Name="Data.Characters.Movement.MazeChangedHandler" Collapsed="true">
-    <Position X="15.75" Y="13.75" Width="1.5" />
+    <Position X="28.5" Y="8" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAACAAAAAAAAAA=</HashCode>
       <FileName>Characters\Movement\MazeSolver.cs</FileName>
     </TypeIdentifier>
   </Delegate>
   <Delegate Name="Data.Characters.Movement.EncounteredDelegate" Collapsed="true">
-    <Position X="15.75" Y="13" Width="1.5" />
+    <Position X="28.5" Y="7.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
       <FileName>Characters\Movement\Movement.cs</FileName>
     </TypeIdentifier>
   </Delegate>
   <Delegate Name="Data.GridItem.PlayerDirectionChangedDelegate" Collapsed="true">
-    <Position X="17.5" Y="13.75" Width="1.5" />
+    <Position X="30.25" Y="8" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GridViewItem\LevelGrid.cs</FileName>
     </TypeIdentifier>
   </Delegate>
   <Delegate Name="Data.GridItem.GridItemChangedDelegate" Collapsed="true">
-    <Position X="17.5" Y="13" Width="1.5" />
+    <Position X="30.25" Y="7.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAABAAAAAAAAAAAAAAAAAAAEAAAACAAAAAAAAAA=</HashCode>
       <FileName>GridViewItem\LevelGrid.cs</FileName>
